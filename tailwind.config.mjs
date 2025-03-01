@@ -1,32 +1,34 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: [
-        "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-        "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-        "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-        "./src/widget/**/*.{js,ts,jsx,tsx,mdx}",
-    ],
+    content: ["./src/pages/**/*.{js,ts,jsx,tsx,mdx}", "./src/components/**/*.{js,ts,jsx,tsx,mdx}", "./src/app/**/*.{js,ts,jsx,tsx,mdx}", "./src/widget/**/*.{js,ts,jsx,tsx,mdx}"],
     theme: {
         extend: {
             fontFamily: {
                 poppins: ["var(--font-poppins)", "sans-serif"],
             },
             colors: {
-                primary: "#474848",
-                secondary: "#E9EEF5",
-                default: "#F9FBFF",
-                paper: "#FFFFFF",
-                warning_light: "#FF9458",
-                warning_main: "#FF5E29",
-                info_light: "#2A66FF",
-                info_main: "#4665FF",
-                info_dark: "#5685FF",
-                info_deep: "#294DFF",
-                info_footer: "#253053",
-                gary_700: "#E2E2E2",
-                gray_600: "#EFF5F5",
-                gray_500: "#EFF3F3",
-                gray_300: "#E5F1FF",
+                balck: "#000000",
+                white: "#ffffff",
+                primary: "#5D6974",
+                secondary: "#3a4856",
+                default: "#ebf0f4",
+                paper: "",
+                warning_light: "",
+                warning_main: "#fdcc02",
+                info_extra_light: "rgba(0, 2, 110, .12)",
+                info_light: "#728db6",
+                info_main: "#00026e",
+                info_dark: "",
+                info_deep: "",
+                info_footer: "",
+                disable: "",
+                gray_600: "#",
+                gray_500: "#",
+                gray_300: "#",
+                divider: "rgba(34, 41, 47, .05)",
+            },
+            boxShadow: {
+                menu: "0 5px 25px rgba(34, 41, 47, .1)",
             },
             fontSize: {
                 xxs: ".5rem", // 8px         caption p
@@ -41,6 +43,9 @@ export default {
                 "5xl": "2rem", // "32px",    H2
                 "6xl": "2.25rem", //"36px",  H1
             },
+            maxWidth: {
+                "2xl": "1140px",
+            },
         },
     },
 
@@ -48,102 +53,69 @@ export default {
         function ({ addComponents, theme }) {
             addComponents({
                 ".text-H1": {
-                    fontSize: theme("fontSize.3xl"),
+                    // fontSize: theme("fontSize.3xl"),
 
-                    "@screen md": {
-                        fontSize: theme("fontSize.4xl"), // Large screen
-                    },
-                    "@screen 2xl": {
-                        fontSize: theme("fontSize.6xl"), // Biggest screen
-                    },
-                },
-                ".text-H2": {
-                    fontSize: theme("fontSize.2xl"),
-
-                    "@screen md": {
-                        fontSize: theme("fontSize.3xl"), // Large screen
-                    },
-                    "@screen 2xl": {
-                        fontSize: theme("fontSize.5xl"), // Biggest screen
-                    },
-                },
-                ".text-H3": {
-                    fontSize: theme("fontSize.xl"),
-
-                    "@screen md": {
-                        fontSize: theme("fontSize.2xl"), // Large screen
-                    },
-                    "@screen 2xl": {
-                        fontSize: theme("fontSize.4xl"), // Biggest screen
-                    },
-                },
-                ".text-H4": {
-                    fontSize: theme("fontSize.lg"),
-
-                    "@screen md": {
-                        fontSize: theme("fontSize.xl"), // Large screen
-                    },
+                    // "@screen md": {
+                    //     fontSize: theme("fontSize.4xl"), // Large screen
+                    // },
                     "@screen 2xl": {
                         fontSize: theme("fontSize.3xl"), // Biggest screen
                     },
                 },
-                ".text-H5": {
-                    fontSize: theme("fontSize.lg"),
+                ".text-H2": {
+                    // fontSize: theme("fontSize.2xl"),
 
-                    "@screen md": {
-                        fontSize: theme("fontSize.xl"), // Large screen
-                    },
+                    // "@screen md": {
+                    //     fontSize: theme("fontSize.3xl"), // Large screen
+                    // },
                     "@screen 2xl": {
                         fontSize: theme("fontSize.2xl"), // Biggest screen
                     },
                 },
-                ".text-H6": {
-                    fontSize: theme("fontSize.sm"),
+                ".text-H3": {
+                    // fontSize: theme("fontSize.xl"),
 
-                    "@screen md": {
-                        fontSize: theme("fontSize.xl"), // Large screen
-                    },
+                    // "@screen md": {
+                    //     fontSize: theme("fontSize.2xl"), // Large screen
+                    // },
                     "@screen 2xl": {
                         fontSize: theme("fontSize.xl"), // Biggest screen
                     },
                 },
-                ".text-subtitle1": {
-                    fontSize: theme("fontSize.sm"),
+                ".text-H4": {
+                    // fontSize: theme("fontSize.lg"),
 
-                    "@screen md": {
-                        fontSize: theme("fontSize.lg"), // Large screen
-                    },
+                    // "@screen md": {
+                    //     fontSize: theme("fontSize.xl"), // Large screen
+                    // },
                     "@screen 2xl": {
                         fontSize: theme("fontSize.lg"), // Biggest screen
                     },
                 },
-                ".text-subtitle2": {
-                    fontSize: theme("fontSize.xs"),
 
-                    "@screen md": {
-                        fontSize: theme("fontSize.sm"), // Large screen
-                    },
-                    "@screen 2xl": {
-                        fontSize: theme("fontSize.sm"), // Biggest screen
-                    },
-                },
-                ".text-body1": {
-                    fontSize: theme("fontSize.xs"),
-
+                ".text-subtitle1": {
                     "@screen 2xl": {
                         fontSize: theme("fontSize.base"), // Biggest screen
                     },
                 },
+
+                ".text-body1": {
+                    // fontSize: theme("fontSize.xs"),
+
+                    "@screen 2xl": {
+                        fontSize: theme("fontSize.sm"), // Biggest screen
+                    },
+                },
                 ".text-body2": {
-                    fontSize: theme("fontSize.xs"),
+                    // fontSize: theme("fontSize.xs"),
                     "@screen 2xl": {
                         fontSize: theme("fontSize.xs"), // Large screen
                     },
                 },
                 ".text-caption": {
-                    fontSize: theme("fontSize.xxs"),
+                    // fontSize: theme("fontSize.xxs"),
                     "@screen 2xl": {
-                        fontSize: theme("fontSize.xs"), // Large screen
+                        fontSize: theme("fontSize.xxs"), // Large screen
                     },
                 },
             });
