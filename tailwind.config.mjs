@@ -29,6 +29,8 @@ export default {
             },
             boxShadow: {
                 menu: "0 5px 25px rgba(34, 41, 47, .1)",
+                service: "0 20px 100px 10px rgba(24, 33, 77, .05)",
+                tabs: "0 4px 10px rgba(0, 117, 255, .09)",
             },
             fontSize: {
                 xxs: ".5rem", // 8px         caption p

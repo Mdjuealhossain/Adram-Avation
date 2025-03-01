@@ -23,7 +23,7 @@ const Nav = () => {
     // const { isOpen: isDrawer, openModal: openDrawer, closeModal: closeDrawer } = useModal();
     return (
         <>
-            <div className=" bg-white">
+            <div className="  fixed left-0 top-0 right-0">
                 <Container>
                     <nav className=" flex items-center justify-between md:h-20 h-16">
                         <Link href={"/"}>
