@@ -46,7 +46,7 @@ const Nav = () => {
 
                             {/* Dropdown Menu */}
                             {isOpen && (
-                                <div className="absolute top-full md:left-1/2 left-0 -translate-x-1/2 w-[147px] bg-white mt-2 shadow-menu rounded-md border z-20">
+                                <div className="absolute top-full md:left-1/2  left-0 -translate-x-1/2 w-[147px] bg-white mt-2 shadow-menu rounded-md border !z-50">
                                     <ul>
                                         <li>
                                             <Link href="#" onClick={() => setIsOpen(false)} className="flex items-center gap-2 py-[7px] px-[14px] text-primary text-body1 whitespace-nowrap capitalize hover:bg-info_extra_light hover:text-info_main">

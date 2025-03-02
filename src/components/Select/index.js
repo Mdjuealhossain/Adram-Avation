@@ -17,8 +17,8 @@ const SelectWithSearch = ({ label, onSelect = () => {}, options, selectedAirport
         <div className="relative w-full">
             <div onClick={() => setIsOpen(!isOpen)} className={`border px-4 py-2 border-divider_2 rounded-[10px] cursor-pointer ${isOpen ? " bg-info_deep_light" : " bg-transparent"}`}>
                 <p className=" text-body2 mb-1 text-info_main uppercase">{label}</p>
-                <p className=" text-subtitle1 font-bold text-info_main capitalize">{selectedAirport.name}</p>
-                <p className=" text-body2">{selectedAirport.fullName}</p>
+                <p className=" text-subtitle1 font-bold text-info_main capitalize line-clamp-1">{selectedAirport.name}</p>
+                <p className=" text-body2 line-clamp-1">{selectedAirport.fullName}</p>
             </div>
             {isOpen && <div className="fixed inset-0 bg-transparent z-10" onClick={() => setIsOpen(false)}></div>}
 
