@@ -25,7 +25,7 @@ const SelectWithSearch = ({ label, onSelect = () => {} }) => {
     };
 
     return (
-        <div className="relative w-full">
+        <div className="relative w-full mt-64">
             <label className="block text-sm font-medium mb-1">{label}</label>
             <div className="border rounded-md bg-white p-2 cursor-pointer flex items-center justify-between" onClick={() => setIsOpen(!isOpen)}>
                 <span>{selectedAirport ? `${selectedAirport.name} (${selectedAirport.id})` : "Select an airport"}</span>

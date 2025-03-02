@@ -15,6 +15,7 @@ export default {
                 paper: "",
                 warning_light: "",
                 warning_main: "#fdcc02",
+                info_deep_light: "rgba(153, 194, 255, .322)",
                 info_extra_light: "rgba(0, 2, 110, .12)",
                 info_light: "#728db6",
                 info_main: "#00026e",
@@ -26,6 +27,7 @@ export default {
                 gray_500: "#",
                 gray_300: "#",
                 divider: "rgba(34, 41, 47, .05)",
+                divider_2: "#dbdde0",
             },
             boxShadow: {
                 menu: "0 5px 25px rgba(34, 41, 47, .1)",
@@ -33,17 +35,17 @@ export default {
                 tabs: "0 4px 10px rgba(0, 117, 255, .09)",
             },
             fontSize: {
-                xxs: ".5rem", // 8px         caption p
-                xs: "0.75rem", //"12px",     body2  p
-                sm: "0.875rem", //14px",     subtitle2   p
-                base: "1rem", //"16px",      body1   p
-                lg: "1.125rem", //"18px",    subtitle1    p
-                xl: "1.25rem", //"20px",     H6
-                "2xl": "1.5rem", //"24px",   H5
-                "3xl": "1.625rem", // 26px    H4
-                "4xl": "1.75rem", //"28px",  H3
-                "5xl": "2rem", // "32px",    H2
-                "6xl": "2.25rem", //"36px",  H1
+                xxs: ".5rem", // 8px
+                xs: "0.75rem", //"12px",
+                sm: "0.875rem", //14px",
+                base: "1rem", //"16px",
+                lg: "1.125rem", //"18px",
+                xl: "1.25rem", //"20px",
+                "2xl": "1.5rem", //"24px",
+                "3xl": "1.625rem", // 26px
+                "4xl": "1.75rem", //"28px",
+                "5xl": "2rem", // "32px",
+                "6xl": "2.25rem", //"36px",
             },
             maxWidth: {
                 "2xl": "1140px",

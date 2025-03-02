@@ -17,6 +17,7 @@ import Container from "@/components/Container";
 import useModal from "@/hooks/useModal";
 import MobileDrawer from "../MobileDrawer";
 import "react-modern-drawer/dist/index.css";
+import Image from "next/image";
 
 const Nav = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -26,9 +27,8 @@ const Nav = () => {
             <div className="  fixed left-0 top-0 right-0">
                 <Container>
                     <nav className=" flex items-center justify-between md:h-20 h-16">
-                        <Link href={"/"}>
-                            logo
-                            {/* <Image src={"/"} alt="logo" height={40} width={130} className=" h-auto w-auto max-h-full max-w-full" /> */}
+                        <Link href={"/"} className=" flex items-center justify-center overflow-hidden h-10">
+                            <Image src={"/assets/logo.jpg"} alt="logo" height={40} width={130} className=" h-auto w-auto max-h-full max-w-full" />
                         </Link>
                         <div className=" items-center gap-8 relative  flex">
                             {/* <Button className="bg-warning_main text-info_main">sign in</Button> */}
