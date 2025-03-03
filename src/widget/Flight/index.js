@@ -112,17 +112,7 @@ const Flight = () => {
                                 className="border rounded-lg shadow-lg p-2"
                                 dateFormat="dd/MM/yyyy" // Format of the selected date
                             />
-                            <DatePicker
-                                selected={startDate}
-                                onChange={(date) => {
-                                    setStartDate(date);
-                                    setIsOpen(false); // Close the date picker after selection
-                                }}
-                                inline // Displays the calendar inline
-                                onClickOutside={() => setIsOpen(false)} // Close on outside click
-                                className="border rounded-lg shadow-lg p-2"
-                                dateFormat="dd/MM/yyyy" // Format of the selected date
-                            />
+
                             <span onClick={() => setIsOpen(false)} className="absolute top-[90%] left-1/2 -translate-x-1/2 md:hidden rounded-full bg-black/20 p-2 cursor-pointer">
                                 <IoClose size={18} />
                             </span>
