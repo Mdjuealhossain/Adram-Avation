@@ -36,12 +36,12 @@ const HerroBanner = () => {
     return (
         <div style={{ backgroundImage: "url('/assets/images/banner.jpg')" }} className="bg-cover bg-center h-[650px] flex items-center justify-center">
             <Container className={" relative"}>
-                <div className="bg-white shadow-tabs px-[60px] rounded-lg z-10 absolute left-1/2 -translate-x-1/2 -top-12 flex items-center">
+                <div className="bg-white shadow-tabs md:px-[60px] px-10 rounded-lg z-10 absolute left-1/2 -translate-x-1/2 -top-12 flex items-center">
                     {tabs.map((tab) => (
                         <Tab key={tab.id} isActive={activeTabIndex == tab.id} onClick={() => setActiveTabIndex(tab.id)} label={tab.label} icon={tab.icon} />
                     ))}
                 </div>
-                <div className=" px-[30px] pt-[50px] pb-10 bg-white relative shadow-service rounded-[20px]">
+                <div className=" md:px-[30px] md:pt-[50px] md:pb-10 pt-10 px-4 pb-6 bg-white relative shadow-service rounded-[20px]">
                     <Flight />
                 </div>
             </Container>

@@ -57,67 +57,72 @@ export default {
         function ({ addComponents, theme }) {
             addComponents({
                 ".text-H1": {
-                    // fontSize: theme("fontSize.3xl"),
+                    fontSize: theme("fontSize.3xl"),
 
-                    // "@screen md": {
-                    //     fontSize: theme("fontSize.4xl"), // Large screen
-                    // },
+                    "@screen md": {
+                        fontSize: theme("fontSize.4xl"), // Large screen
+                    },
                     "@screen 2xl": {
                         fontSize: theme("fontSize.3xl"), // Biggest screen
                     },
                 },
                 ".text-H2": {
-                    // fontSize: theme("fontSize.2xl"),
+                    fontSize: theme("fontSize.2xl"),
 
-                    // "@screen md": {
-                    //     fontSize: theme("fontSize.3xl"), // Large screen
-                    // },
+                    "@screen md": {
+                        fontSize: theme("fontSize.3xl"), // Large screen
+                    },
                     "@screen 2xl": {
                         fontSize: theme("fontSize.2xl"), // Biggest screen
                     },
                 },
                 ".text-H3": {
-                    // fontSize: theme("fontSize.xl"),
+                    fontSize: theme("fontSize.xl"),
 
-                    // "@screen md": {
-                    //     fontSize: theme("fontSize.2xl"), // Large screen
-                    // },
+                    "@screen md": {
+                        fontSize: theme("fontSize.2xl"), // Large screen
+                    },
                     "@screen 2xl": {
                         fontSize: theme("fontSize.xl"), // Biggest screen
                     },
                 },
                 ".text-H4": {
-                    // fontSize: theme("fontSize.lg"),
+                    fontSize: theme("fontSize.lg"),
 
-                    // "@screen md": {
-                    //     fontSize: theme("fontSize.xl"), // Large screen
-                    // },
+                    "@screen md": {
+                        fontSize: theme("fontSize.xl"), // Large screen
+                    },
                     "@screen 2xl": {
                         fontSize: theme("fontSize.lg"), // Biggest screen
                     },
                 },
 
                 ".text-subtitle1": {
+                    fontSize: theme("fontSize.xs"),
+
+                    "@screen md": {
+                        fontSize: theme("fontSize.sm"), // Large screen
+                    },
                     "@screen 2xl": {
                         fontSize: theme("fontSize.base"), // Biggest screen
                     },
                 },
 
                 ".text-body1": {
-                    // fontSize: theme("fontSize.xs"),
+                    fontSize: theme("fontSize.xs"),
 
                     "@screen 2xl": {
                         fontSize: theme("fontSize.sm"), // Biggest screen
                     },
                 },
                 ".text-body2": {
-                    // fontSize: theme("fontSize.xs"),
+                    fontSize: theme("fontSize.xs"),
                     "@screen 2xl": {
                         fontSize: theme("fontSize.xs"), // Large screen
                     },
                 },
                 ".text-caption": {
-                    // fontSize: theme("fontSize.xxs"),
+                    fontSize: theme("fontSize.xxs"),
                     "@screen 2xl": {
                         fontSize: theme("fontSize.xxs"), // Large screen
                     },

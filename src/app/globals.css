@@ -9,13 +9,13 @@ body {
     @apply !bg-transparent !border-transparent;
 }
 .react-datepicker {
-    @apply !border-transparent !w-full;
+    @apply !border-transparent !w-full !flex !items-center !justify-center;
 }
 .date-picker-container {
-    width: 600px !important;
+    @apply md:!w-[600px];
 }
 .datepicker {
-    width: 100% !important;
+    @apply md:!w-full;
 }
 .react-datepicker__current-month {
     @apply !font-normal !mb-4 !text-primary !font-poppins;

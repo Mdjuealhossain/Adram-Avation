@@ -27,8 +27,8 @@ export const Tabs = ({ children }) => {
 };
 
 export const Tab = ({ label, isActive, onClick, icon }) => (
-    <button className={`flex items-center space-x-3 p-5 font-semibold focus:outline-none border-b-2 ${isActive ? " border-warning_main" : "text-secondary border-transparent"}`} onClick={onClick}>
-        <span className={`${isActive ? "  text-info_main" : "text-secondary "}`}>{icon}</span>
+    <button className={`flex flex-col md:flex-row justify-center md:justify-start items-center gap-1 md:gap-3 md:p-5 p-3 font-semibold focus:outline-none border-b-2 ${isActive ? " border-warning_main text-info_main" : "text-secondary border-transparent"}`} onClick={onClick}>
+        <span>{icon}</span>
         <span>{label}</span>
     </button>
 );
