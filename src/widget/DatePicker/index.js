@@ -6,7 +6,7 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { IoClose } from "react-icons/io5";
 
-const DatePicker = ({ roundWay, setRoundWay, oneWay, setOneWay }) => {
+const DatePicker = ({ roundWay, setRoundWay, oneWay, setOneWay, multiCity, setMultiCity }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [type, setType] = useState("journey");
     const [direction, setDirection] = useState("horizontal"); // Default direction
@@ -101,7 +101,7 @@ const DatePicker = ({ roundWay, setRoundWay, oneWay, setOneWay }) => {
     return (
         <div className="flex relative items-start w-full md:w-auto bg-white border rounded-[10px] border-divider_2" ref={datePickerRef}>
             {/* Journey Date Section */}
-            <div onClick={handleClick} className={`md:px-4 px-3 py-2 border-r w-1/2  border-divider cursor-pointer ${type === "journey" ? "bg-info_deep_light" : "bg-transparent"}`}>
+            <div onClick={handleClick} className={`md:px-4 px-3 py-2 border-r  ${multiCity ? " w-full border-transparent" : "w-1/2 border-divider"}  border-divider cursor-pointer ${isOpen && type === "journey" ? "bg-info_deep_light" : "bg-transparent"}`}>
                 <p className="text-body2 mb-1 text-info_main uppercase w-full whitespace-nowrap">JOURNEY DATE</p>
                 <button className="text-info_main capitalize flex items-center gap-1">
                     <span className="font-bold">{date[0].startDate.toLocaleDateString("en-GB", { day: "2-digit" })}</span>
@@ -111,7 +111,7 @@ const DatePicker = ({ roundWay, setRoundWay, oneWay, setOneWay }) => {
             </div>
 
             {/* Return Date Section */}
-            <div onClick={handleReturn} className={`md:px-4 px-3 py-2  w-1/2 ${type === "return" ? "bg-info_deep_light" : "bg-transparent"}`}>
+            <div onClick={handleReturn} className={`md:px-4 px-3 py-2 ${multiCity ? " hidden" : "inline-block"}  w-1/2 ${type === "return" ? "bg-info_deep_light" : "bg-transparent"}`}>
                 <p className="text-body2 mb-1 text-info_main uppercase whitespace-nowrap">RETURN DATE</p>
                 {roundWay ? (
                     <div className="flex items-center justify-between relative">

@@ -41,9 +41,7 @@ const HerroBanner = () => {
                         <Tab key={tab.id} isActive={activeTabIndex == tab.id} onClick={() => setActiveTabIndex(tab.id)} label={tab.label} icon={tab.icon} />
                     ))}
                 </div>
-                <div className=" md:px-[30px] md:pt-[50px] md:pb-10 pt-10 px-4 pb-6 bg-white relative shadow-service rounded-[20px]">
-                    <Flight />
-                </div>
+                <div className=" md:px-[30px] md:pt-[50px] md:pb-10 pt-10 px-4 pb-6 bg-white relative shadow-service rounded-[20px]">{activeTabIndex == "1" && <Flight />}</div>
             </Container>
         </div>
     );

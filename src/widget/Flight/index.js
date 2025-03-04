@@ -23,6 +23,9 @@ const Flight = () => {
         setSelectedFrom(selectedTo);
         setSelectedTo(selectedFrom);
     };
+    const handlePassenger = (data) => {
+        console.log("data");
+    };
 
     return (
         <div>
@@ -80,16 +83,16 @@ const Flight = () => {
                 <div className=" grid grid-cols-2 relative gap-[10px]">
                     <SelectWithSearch options={airports} label={"From"} selectedAirport={selectedFrom} onSelect={setSelectedFrom} />
                     <SelectWithSearch options={airports} label={"To"} selectedAirport={selectedTo} onSelect={setSelectedTo} />
-                    <div className=" p-[10px] rounded-full border absolute z-10 cursor-pointer bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" onClick={handleSwap}>
+                    <div className={`${multiCity ? " hidden" : "inline-block"} p-[10px] rounded-full border absolute z-10 cursor-pointer bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2`} onClick={handleSwap}>
                         <LuArrowLeftRight className=" opacity-60 text-info_main" />
                     </div>
                 </div>
                 <div className=" grid lg:grid-cols-5 gap-[10px]">
                     <div className=" lg:col-span-3 col-span-5">
-                        <DatePicker roundWay={roundWay} setRoundWay={setRoundWay} oneWay={oneWay} setOneWay={setOneWay} />
+                        <DatePicker roundWay={roundWay} setRoundWay={setRoundWay} oneWay={oneWay} setOneWay={setOneWay} multiCity={multiCity} setMultiCity={setMultiCity} />
                     </div>
                     <div className=" lg:col-span-2 col-span-5">
-                        <TravelerSelect label={"Traveler, Class"} />
+                        <TravelerSelect onSelect={handlePassenger} label={"Traveler, Class"} />
                     </div>
                 </div>
             </div>
