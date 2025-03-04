@@ -8,7 +8,7 @@ body {
 .react-datepicker__header {
     @apply !bg-transparent !border-transparent;
 }
-.react-datepicker {
+/* .react-datepicker {
     @apply !border-transparent !w-full !flex !items-center !justify-center;
 }
 .date-picker-container {
@@ -25,4 +25,4 @@ body {
 }
 .react-datepicker__day {
     @apply !w-8 !text-body2 !m-1 !font-poppins;
-}
+} */

@@ -76,55 +76,22 @@ const Flight = () => {
                     <span className=" text-info_main">Multi City</span>
                 </label>
             </div>
-            <div className=" flex lg:items-center flex-col md:flex-row gap-[10px]">
-                <div className=" flex items-center relative gap-[10px]">
+            <div className=" grid lg:grid-cols-2 grid-cols-1 gap-[10px]">
+                <div className=" grid grid-cols-2 relative gap-[10px]">
                     <SelectWithSearch options={airports} label={"From"} selectedAirport={selectedFrom} onSelect={setSelectedFrom} />
                     <SelectWithSearch options={airports} label={"To"} selectedAirport={selectedTo} onSelect={setSelectedTo} />
                     <div className=" p-[10px] rounded-full border absolute z-10 cursor-pointer bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" onClick={handleSwap}>
                         <LuArrowLeftRight className=" opacity-60 text-info_main" />
                     </div>
                 </div>
-                <DatePicker />
-                {/* <div className="flex relative items-start bg-white border rounded-[10px] border-divider_2 ">
-                    <div onClick={handleClick} className={`md:px-4 px-3 py-2 border-r w-1/2 md:w-auto border-divider  ${isOpen ? " bg-info_deep_light" : " bg-transparent"}`}>
-                        <p className=" text-body2 mb-1 text-info_main uppercase max-w-[126px] w-full whitespace-nowrap">JOURNEY DATE</p>
-                        <button className="text-info_main capitalize max-w-[126px] w-full flex items-center gap-1">
-                            <span className="font-bold">{startDate.toLocaleDateString("en-GB", { day: "2-digit" })}</span>
-                            <span className=" text-body1">{startDate.toLocaleDateString("en-GB", { month: "short", year: "2-digit" }).replace(",", "'")}</span>
-                        </button>
-
-                        <button className=" text-subtitle1 font-bold text-info_main capitalize max-w-[126px] w-full">{startDate ? startDate.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "2-digit" }) : "Select Date"}</button>
-                        <div className=" text-body2 max-w-[126px] w-full">{startDate ? startDate.toLocaleDateString("en-GB", { weekday: "long" }) : ""}</div>
+                <div className=" grid lg:grid-cols-5 gap-[10px]">
+                    <div className=" lg:col-span-3 col-span-5">
+                        <DatePicker roundWay={roundWay} setRoundWay={setRoundWay} oneWay={oneWay} setOneWay={setOneWay} />
                     </div>
-                    {isOpen && (
-                        <div className="md:mt-1 z-10 md:absolute fixed inset-0 md:inset-auto md:top-full bg-white px-2 py-6 ">
-                            <p className=" capitalize mb-2 font-semibold text-center">select journy date</p>
-                            <DatePicker
-                                selected={startDate}
-                                onChange={(date) => {
-                                    setStartDate(date);
-                                    setIsOpen(false); // Close the date picker after selection
-                                }}
-                                inline // Displays the calendar inline
-                                onClickOutside={() => setIsOpen(false)} // Close on outside click
-                                className="border rounded-lg shadow-lg p-2"
-                                dateFormat="dd/MM/yyyy" // Format of the selected date
-                            />
-
-                            <span onClick={() => setIsOpen(false)} className="absolute top-[90%] left-1/2 -translate-x-1/2 md:hidden rounded-full bg-black/20 p-2 cursor-pointer">
-                                <IoClose size={18} />
-                            </span>
-                        </div>
-                    )}
-
-                    <div className=" md:px-4 px-3 py-2 w-1/2 md:w-auto ">
-                        <p className=" text-body2 mb-1 text-info_main uppercase max-w-[126px] w-full whitespace-nowrap">RETURN DATE</p>
-                        <button className=" text-body2 max-w-[126px] w-full text-start whitespace-nowrap">
-                            Save more on return <br /> flight
-                        </button>
+                    <div className=" lg:col-span-2 col-span-5">
+                        <TravelerSelect label={"Traveler, Class"} />
                     </div>
-                </div> */}
-                <TravelerSelect label={"Traveler, Class"} />
+                </div>
             </div>
         </div>
     );
