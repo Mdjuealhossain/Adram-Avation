@@ -38,7 +38,7 @@ const ChildAgeSelector = ({ control, count }) => (
 );
 
 // Main TravelerSelect Component
-const TravelerSelect = ({ label, onSelect = () => {} }) => {
+const TravelerSelect = ({ label, onSelect = () => {}, type }) => {
     const [isOpen, setIsOpen] = useState(false);
     const { control, handleSubmit, watch, setValue, register } = useForm({
         defaultValues: {

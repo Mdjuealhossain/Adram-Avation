@@ -6,7 +6,7 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { IoClose } from "react-icons/io5";
 
-const DatePicker = ({ roundWay, setRoundWay, oneWay, setOneWay, multiCity, setMultiCity }) => {
+const DatePicker = ({ roundWay, setRoundWay, oneWay, setOneWay, multiCity, setMultiCity, service = "flight" }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [type, setType] = useState("journey");
     const [direction, setDirection] = useState("horizontal"); // Default direction
@@ -74,8 +74,10 @@ const DatePicker = ({ roundWay, setRoundWay, oneWay, setOneWay, multiCity, setMu
     const handleReturn = () => {
         setType("return");
         setIsOpen(true);
-        setRoundWay(true);
-        setOneWay(false);
+        if (setRoundWay || setOneWay) {
+            setRoundWay(true);
+            setOneWay(false);
+        }
     };
 
     // Handle date selection
@@ -122,16 +124,18 @@ const DatePicker = ({ roundWay, setRoundWay, oneWay, setOneWay, multiCity, setMu
                             </button>
                             <div className="text-body2">{date[0].endDate.toLocaleDateString("en-GB", { weekday: "long" })}</div>
                         </div>
-                        <span
-                            onClick={(e) => {
-                                setRoundWay(false);
-                                setOneWay(true);
-                                e.stopPropagation();
-                            }}
-                            className="absolute -right-0 bottom-4 rounded-full bg-black/20 p-1 cursor-pointer"
-                        >
-                            <IoClose size={14} />
-                        </span>
+                        {service == "flight" && (
+                            <span
+                                onClick={(e) => {
+                                    setRoundWay(false);
+                                    setOneWay(true);
+                                    e.stopPropagation();
+                                }}
+                                className="absolute -right-0 bottom-4 rounded-full bg-black/20 p-1 cursor-pointer"
+                            >
+                                <IoClose size={14} />
+                            </span>
+                        )}
                     </div>
                 ) : (
                     <button className="text-body2 text-start whitespace-nowrap">

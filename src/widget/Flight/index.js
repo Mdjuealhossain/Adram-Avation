@@ -81,8 +81,8 @@ const Flight = () => {
             </div>
             <div className=" grid lg:grid-cols-2 grid-cols-1 gap-[10px]">
                 <div className=" grid grid-cols-2 relative gap-[10px]">
-                    <SelectWithSearch options={airports} label={"From"} selectedAirport={selectedFrom} onSelect={setSelectedFrom} />
-                    <SelectWithSearch options={airports} label={"To"} selectedAirport={selectedTo} onSelect={setSelectedTo} />
+                    <SelectWithSearch options={airports} label={"From"} selectedItem={selectedFrom} onSelect={setSelectedFrom} />
+                    <SelectWithSearch options={airports} label={"To"} selectedItem={selectedTo} onSelect={setSelectedTo} />
                     <div className={`${multiCity ? " hidden" : "inline-block"} p-[10px] rounded-full border absolute z-10 cursor-pointer bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2`} onClick={handleSwap}>
                         <LuArrowLeftRight className=" opacity-60 text-info_main" />
                     </div>
