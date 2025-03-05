@@ -19,6 +19,7 @@ export default {
                 info_extra_light: "rgba(0, 2, 110, .12)",
                 info_light: "#728db6",
                 info_main: "#00026e",
+                success_light: "#056998",
                 info_dark: "",
                 info_deep: "",
                 info_footer: "",

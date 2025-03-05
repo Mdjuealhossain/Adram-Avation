@@ -24,8 +24,26 @@ const Flight = () => {
         setSelectedTo(selectedFrom);
     };
     const handlePassenger = (data) => {
-        console.log("data");
+        console.log("data", data);
     };
+
+    // fo date
+    const getNextDay = (date) => {
+        const nextDay = new Date(date);
+        nextDay.setDate(date.getDate() + 1);
+        return nextDay;
+    };
+    const [date, setDate] = useState([
+        {
+            startDate: new Date(2025, 2, 8),
+            endDate: getNextDay(new Date(2025, 2, 8)),
+            key: "selection",
+        },
+    ]);
+
+    // console.log("selected", selected);
+
+    console.log("date?.startDate", selectedFrom);
 
     return (
         <div>
@@ -89,10 +107,10 @@ const Flight = () => {
                 </div>
                 <div className=" grid lg:grid-cols-5 gap-[10px]">
                     <div className=" lg:col-span-3 col-span-5">
-                        <DatePicker roundWay={roundWay} setRoundWay={setRoundWay} oneWay={oneWay} setOneWay={setOneWay} multiCity={multiCity} setMultiCity={setMultiCity} />
+                        <DatePicker getNextDay={getNextDay} date={date} onSelect={setDate} roundWay={roundWay} setRoundWay={setRoundWay} oneWay={oneWay} setOneWay={setOneWay} multiCity={multiCity} setMultiCity={setMultiCity} startLabel="journy date" endLabel="return date" />
                     </div>
                     <div className=" lg:col-span-2 col-span-5">
-                        <TravelerSelect onSelect={handlePassenger} label={"Traveler, Class"} />
+                        <TravelerSelect onSelect={handlePassenger} service={"flight"} label={"Traveler, Class"} />
                     </div>
                 </div>
             </div>

@@ -1,119 +1,119 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
-import { IoIosSearch } from "react-icons/io";
-import { IoClose } from "react-icons/io5";
+import React, { useState } from "react";
 
-const SelectComponent = ({ destinations, properties }) => {
-    const [search, setSearch] = useState("");
-    const [isOpen, setIsOpen] = useState(false);
-    const [selectedItem, setSelectedItem] = useState(null);
-    const selectRef = useRef(null);
+// Color Palette
+const colors = {
+    primary: "#3b82f6", // Blue-500 (Tailwind default)
+    secondary: "#6b7280", // Gray-500
+    textDark: "#1e3a8a", // Indigo-900 (For Headings)
+    textLight: "#374151", // Gray-700 (For descriptions)
+    background: "#f9fafb", // Gray-50
+    border: "#d1d5db", // Gray-300
+    accent: "#facc15", // Yellow-400 (For the "Done" button)
+    buttonText: "#ffffff", // White
+};
 
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (selectRef.current && !selectRef.current.contains(event.target)) {
-                setIsOpen(false);
-            }
-        };
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, []);
+const RoomConfiguration = () => {
+    const [rooms, setRooms] = useState([{ id: 1, adults: 2, children: 3 }]);
 
-    const handleSelect = (item) => {
-        setSelectedItem(item);
-        setIsOpen(false);
-        setSearch("");
+    const [adults, setAdults] = useState(2);
+    const [children, setChildren] = useState(0);
+
+    const handleIncrementAdults = () => {
+        setAdults(adults + 1);
     };
 
-    const filteredDestinations = destinations.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()));
-    const filteredProperties = properties.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()));
+    const handleDecrementAdults = () => {
+        if (adults > 0) {
+            setAdults(adults - 1);
+        }
+    };
+
+    const handleIncrementChildren = () => {
+        setChildren(children + 1);
+    };
+
+    const handleDecrementChildren = () => {
+        if (children > 0) {
+            setChildren(children - 1);
+        }
+    };
+
+    const handleAddRoom = () => {
+        const newRoom = {
+            id: rooms.length + 1,
+            adults: 1,
+            children: 0,
+        };
+        setRooms([...rooms, newRoom]);
+    };
+
+    const handleRemoveRoom = (id) => {
+        setRooms(rooms.filter((room) => room.id !== id));
+    };
 
     return (
-        <div className="relative  w-[600px] mt-64" ref={selectRef}>
-            <div onClick={() => setIsOpen(!isOpen)} className={`border px-4 py-2 rounded-md cursor-pointer ${isOpen ? "bg-gray-100" : "bg-white"}`}>
-                <p className="text-gray-600 text-sm">Select an option</p>
-                <p className="text-lg font-bold">{selectedItem?.name || "Select a city or property"}</p>
-            </div>
-
-            {isOpen && (
-                <div className="absolute w-full mt-2 bg-white shadow-lg rounded-lg p-4 ">
-                    <div className="relative mb-2">
-                        <IoIosSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
-                        <input type="text" placeholder="Type to search" className="w-full p-2 pl-10 border rounded-md focus:outline-none" value={search} onChange={(e) => setSearch(e.target.value)} />
+        <div className="bg-white rounded-md shadow-md p-4 w-full max-w-md">
+            {rooms.map((room, index) => (
+                <div key={room.id} className="mb-4 pb-4 border-b border-gray-200">
+                    <div className="flex justify-between items-start">
+                        <h3 className="text-lg font-semibold text-indigo-900">Room {index + 1}</h3>
+                        <button className={`text-blue-500 hover:text-blue-700 ${index === 0 ? "hidden" : "inline-block"}`} onClick={() => handleRemoveRoom(room.id)}>
+                            Remove
+                        </button>
                     </div>
-
-                    <div className=" flex ">
-                        <div className=" w-1/2 max-h-96 overflow-y-auto z-10">
-                            <h2 className="text-lg font-bold text-blue-600">Top Destinations</h2>
-                            <ul className="mt-2 space-y-2">
-                                {filteredDestinations.map((item, index) => (
-                                    <li key={index} className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 cursor-pointer" onClick={() => handleSelect(item)}>
-                                        <img src={item.image} alt={item.name} className="w-8 h-8 rounded-md" />
-                                        <div>
-                                            <p className="font-medium">{item.name}</p>
-                                            <p className="text-sm text-gray-500">{item.location}</p>
-                                        </div>
-                                        {item.hot && <span className="ml-auto text-red-500">🔥</span>}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <div className=" w-1/2 max-h-96 overflow-y-auto z-10">
-                            <h2 className="mt-4 text-lg font-bold text-green-600">Top Properties</h2>
-                            <ul className="mt-2 space-y-2">
-                                {filteredProperties.map((item, index) => (
-                                    <li key={index} className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 cursor-pointer" onClick={() => handleSelect(item)}>
-                                        <img src={item.image} alt={item.name} className="w-8 h-8 rounded-md" />
-                                        <div>
-                                            <p className="font-medium">{item.name}</p>
-                                            <p className="text-sm text-gray-500">{item.location}</p>
-                                        </div>
-                                        {item.hot && <span className="ml-auto text-red-500">🔥</span>}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-                    <span onClick={() => setIsOpen(false)} className="absolute top-[100%] left-1/2 transform -translate-x-1/2 bg-black/20 p-2 rounded-full cursor-pointer">
-                        <IoClose size={18} />
-                    </span>
+                    <p className={`${index === rooms.length - 1 ? "hidden" : "inline-block"} text-sm text-gray-700`}>
+                        {room.adults} Adults, {room.children} Children
+                    </p>
                 </div>
+            ))}
+
+            <div className="mb-4">
+                <div className="flex justify-between items-center mb-2">
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">Adults</label>
+                        <span className="text-xs text-gray-500">10 years +</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <button className="rounded-full h-7 w-7 flex items-center justify-center border border-gray-300 text-gray-500 hover:text-gray-700 focus:outline-none" onClick={handleDecrementAdults} disabled={adults <= 0}>
+                            <span>-</span>
+                        </button>
+                        <span>{adults}</span>
+                        <button className="rounded-full h-7 w-7 flex items-center justify-center border border-gray-300 text-gray-500 hover:text-gray-700 focus:outline-none" onClick={handleIncrementAdults}>
+                            <span>+</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div className="flex justify-between items-center">
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">Child</label>
+                        <span className="text-xs text-gray-500">0-10 years</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <button className="rounded-full h-7 w-7 flex items-center justify-center border border-gray-300 text-gray-500 hover:text-gray-700 focus:outline-none" onClick={handleDecrementChildren} disabled={children < 0}>
+                            <span>-</span>
+                        </button>
+                        <span>{children}</span>
+                        <button className="rounded-full h-7 w-7 flex items-center justify-center border border-gray-300 text-gray-500 hover:text-gray-700 focus:outline-none" onClick={handleIncrementChildren}>
+                            <span>+</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {adults > 3 && rooms.length < 2 && (
+                <p className=" text-red-600 text-body2">
+                    More than 3 guests ? <br /> Add another room to get more options .{" "}
+                </p>
             )}
+            <div className="flex justify-between mt-4">
+                <button className="bg-white text-blue-500 border border-blue-500 rounded-md py-2 px-4 hover:bg-blue-50 focus:outline-none" onClick={handleAddRoom}>
+                    Add Another Room
+                </button>
+                <button className="bg-yellow-400 text-white rounded-md py-2 px-4 hover:bg-yellow-500 focus:outline-none">Done</button>
+            </div>
         </div>
     );
 };
 
-export default function App() {
-    const topDestinations = [
-        { name: "Cox's Bazar", location: "City", image: "coxs-bazar.jpg", hot: true },
-        { name: "Sylhet", location: "City", image: "sylhet.jpg", hot: true },
-        { name: "Sreemangal", location: "City", image: "sreemangal.jpg", hot: false },
-        { name: "Gazipur", location: "City", image: "gazipur.jpg", hot: true },
-        { name: "Dhaka", location: "City", image: "dhaka.jpg", hot: false },
-        { name: "Cox's Bazar", location: "City", image: "coxs-bazar.jpg", hot: true },
-        { name: "Sylhet", location: "City", image: "sylhet.jpg", hot: true },
-        { name: "Sreemangal", location: "City", image: "sreemangal.jpg", hot: false },
-        { name: "Gazipur", location: "City", image: "gazipur.jpg", hot: true },
-        { name: "Dhaka", location: "City", image: "dhaka.jpg", hot: false },
-    ];
-
-    const topProperties = [
-        { name: "Sea Pearl Beach Resort", location: "Cox's Bazar", image: "sea-pearl.jpg", hot: true },
-        { name: "Sayeman Beach Resort", location: "Cox's Bazar", image: "sayeman.jpg", hot: false },
-        { name: "Sayeman Heritage", location: "Cox's Bazar", image: "heritage.jpg", hot: true },
-        { name: "Paragon Hotel & Resort", location: "Sreemangal", image: "paragon.jpg", hot: true },
-        { name: "Sea Pearl Beach Resort", location: "Cox's Bazar", image: "sea-pearl.jpg", hot: true },
-        { name: "Sayeman Beach Resort", location: "Cox's Bazar", image: "sayeman.jpg", hot: false },
-        { name: "Sayeman Heritage", location: "Cox's Bazar", image: "heritage.jpg", hot: true },
-        { name: "Paragon Hotel & Resort", location: "Sreemangal", image: "paragon.jpg", hot: true },
-    ];
-
-    return (
-        <div className="flex justify-center p-6 bg-gray-50 min-h-screen">
-            <SelectComponent destinations={topDestinations} properties={topProperties} />
-        </div>
-    );
-}
+export default RoomConfiguration;

@@ -13,33 +13,36 @@ const CounterButton = ({ value, onClick, disabled }) => (
 // Child Age Selector Component
 const ChildAgeSelector = ({ control, count }) => (
     <div className="mt-2">
-        <span className="text-body2 text-info_main mb-1">Child Age</span>
         <div className="grid grid-cols-4 gap-1.5">
             {Array.from({ length: count }).map((_, index) => (
-                <Controller
-                    key={index}
-                    name={`childAges[${index}]`}
-                    control={control}
-                    defaultValue="" // Set initial value to empty string
-                    render={({ field }) => (
-                        <select {...field} className="block px-2 py-1 text-body2 w-full border rounded">
-                            {/* Placeholder option */}
-                            {[2, 3, 4, 5, 6, 7, 8, 9].map((age) => (
-                                <option key={age} value={age}>
-                                    {age}
-                                </option>
-                            ))}
-                        </select>
-                    )}
-                />
+                <div>
+                    <span className="text-body2 text-info_main mb-1">Child {index + 1} Age</span>
+                    <Controller
+                        key={index}
+                        name={`childAges[${index}]`}
+                        control={control}
+                        defaultValue="" // Set initial value to empty string
+                        render={({ field }) => (
+                            <select {...field} className="block px-2 py-1 text-body2 w-full border rounded">
+                                {/* Placeholder option */}
+                                {[2, 3, 4, 5, 6, 7, 8, 9].map((age) => (
+                                    <option key={age} value={age}>
+                                        {age}
+                                    </option>
+                                ))}
+                            </select>
+                        )}
+                    />
+                </div>
             ))}
         </div>
     </div>
 );
 
 // Main TravelerSelect Component
-const TravelerSelect = ({ label, onSelect = () => {}, type }) => {
+const TravelerSelect = ({ label, onSelect = () => {}, service = "", menuClassName }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [rooms, setRooms] = useState([{ id: 1, adults: 2, children: 3 }]);
     const { control, handleSubmit, watch, setValue, register } = useForm({
         defaultValues: {
             adults: 1,
@@ -75,6 +78,18 @@ const TravelerSelect = ({ label, onSelect = () => {}, type }) => {
             document.removeEventListener("mousedown", handleOverlayClick);
         };
     }, []);
+    const handleAddRoom = () => {
+        const newRoom = {
+            id: rooms.length + 1,
+            adults: 1,
+            children: 0,
+        };
+        setRooms([...rooms, newRoom]);
+    };
+
+    const handleRemoveRoom = (id) => {
+        setRooms(rooms.filter((room) => room.id !== id));
+    };
 
     return (
         <div className="relative w-full md:w-auto">
@@ -85,9 +100,27 @@ const TravelerSelect = ({ label, onSelect = () => {}, type }) => {
             </div>
 
             {isOpen && (
-                <div ref={dropdownRef} className="md:absolute md:w-[310px] fixed inset-0 md:inset-auto md:mt-1 bg-white border rounded-md shadow-lg z-20">
-                    <div className="md:max-h-screen overflow-y-auto">
-                        <form onSubmit={handleSubmit(onSubmit)} className="">
+                <div ref={dropdownRef} className={`${menuClassName} md:absolute md:w-[310px] fixed inset-0 md:inset-auto md:mt-1 bg-white border rounded-md shadow-lg z-20`}>
+                    <form onSubmit={handleSubmit(onSubmit)} className="">
+                        <div className="md:max-h-screen overflow-y-auto">
+                            <h4 className=" text-H4 text-success_light capitalize p-[10px] md:hidden font-light !pb-0 text-center">{service == "hotel" ? "guest & rooms" : " edit traveler"}</h4>
+                            {service == "hotel" && (
+                                <div>
+                                    {rooms.map((room, index) => (
+                                        <div key={room.id} className="px-4 py-[10px] border-b border-divider_2">
+                                            <div className="flex justify-between items-start">
+                                                <h3 className=" text-subtitle1 font-semibold text-info_main">Room {index + 1}</h3>
+                                                <button className={`text-body2 text-info_main ${index === 0 ? "hidden" : "inline-block"}`} onClick={() => handleRemoveRoom(room.id)}>
+                                                    Remove
+                                                </button>
+                                            </div>
+                                            <p className={`${index === rooms.length - 1 ? "hidden" : "inline-block"} text-body2 text-info_light`}>
+                                                {room.adults} Adults {room.children > 0 && `, ${room.children} Children`}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                             <div className=" border-b border-divider_2 px-4 pt-5 pb-[10px] flex justify-between items-center">
                                 <div className=" text-body2 text-info_main">
                                     <p>Adults</p>
@@ -148,59 +181,75 @@ const TravelerSelect = ({ label, onSelect = () => {}, type }) => {
                                 {/* Child Age Selector */}
                                 {children > 0 && <ChildAgeSelector control={control} count={children} />}
                             </div>
-
-                            <div className=" px-4 py-[10px] border-b border-divider_2 flex justify-between items-center">
-                                <div className=" text-body2 text-info_main">
-                                    <p>Infant</p>
-                                    <p className=" text-info_light">Below 2 years</p>
+                            {service == "flight" && (
+                                <div className=" px-4 py-[10px] border-b border-divider_2 flex justify-between items-center">
+                                    <div className=" text-body2 text-info_main">
+                                        <p>Infant</p>
+                                        <p className=" text-info_light">Below 2 years</p>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <CounterButton
+                                            value="-"
+                                            onClick={(e) => {
+                                                e.preventDefault(); // Prevent default behavior
+                                                e.stopPropagation(); // Prevent event from bubbling up
+                                                setValue("infants", Math.max(watch("infants") - 1, 0));
+                                            }}
+                                            disabled={watch("infants") <= 0}
+                                        />
+                                        <span className=" w-6 flex items-center justify-center">{watch("infants")}</span>
+                                        <CounterButton
+                                            value="+"
+                                            onClick={(e) => {
+                                                e.preventDefault(); // Prevent default behavior
+                                                e.stopPropagation(); // Prevent event from bubbling up
+                                                setValue("infants", watch("infants") + 1);
+                                            }}
+                                        />
+                                    </div>
                                 </div>
-                                <div className="flex items-center gap-2">
-                                    <CounterButton
-                                        value="-"
-                                        onClick={(e) => {
-                                            e.preventDefault(); // Prevent default behavior
-                                            e.stopPropagation(); // Prevent event from bubbling up
-                                            setValue("infants", Math.max(watch("infants") - 1, 0));
-                                        }}
-                                        disabled={watch("infants") <= 0}
-                                    />
-                                    <span className=" w-6 flex items-center justify-center">{watch("infants")}</span>
-                                    <CounterButton
-                                        value="+"
-                                        onClick={(e) => {
-                                            e.preventDefault(); // Prevent default behavior
-                                            e.stopPropagation(); // Prevent event from bubbling up
-                                            setValue("infants", watch("infants") + 1);
-                                        }}
-                                    />
-                                </div>
-                            </div>
+                            )}
 
                             <div className="p-4">
                                 {/* Class Selector */}
-                                <div className="mb-4">
-                                    <span className="text-body2 text-info_main">Class</span>
-                                    <div className="flex items-center gap-4">
-                                        {["Economy", "Business"].map((type) => (
-                                            <label className="flex items-center cursor-pointer" key={type}>
-                                                <input type="radio" name="class" value={type} {...register("class")} className="mr-2 h-4 w-4" />
-                                                <span className="text-body2 font-semibold">{type}</span>
-                                            </label>
-                                        ))}
+                                {service == "flight" && (
+                                    <div className="mb-4">
+                                        <span className="text-body2 text-info_main">Class</span>
+                                        <div className="flex items-center gap-4">
+                                            {["Economy", "Business"].map((type) => (
+                                                <label className="flex items-center cursor-pointer" key={type}>
+                                                    <input type="radio" name="class" value={type} {...register("class")} className="mr-2 h-4 w-4" />
+                                                    <span className="text-body2 font-semibold">{type}</span>
+                                                </label>
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
+                                )}
+                                {adults > 3 && rooms.length < 2 && (
+                                    <p className=" text-red-600 text-body2 mb-4 text-center md:text-start">
+                                        More than 3 guests ? <br /> Add another room to get more options .
+                                    </p>
+                                )}
 
-                                <div className=" flex items-center justify-end">
-                                    <button type="submit" className=" bg-warning_main text-info_main font-semibold text-body1 py-2 px-5 rounded">
+                                <div className={`  flex items-center ${service == "hotel" ? "md:justify-between justify-center" : "justify-end"}`}>
+                                    {service == "hotel" && (
+                                        <button type="button" className="text-body1 py-2 px-5 rounded border border-info_main text-info_main" onClick={handleAddRoom}>
+                                            Add Another Room
+                                        </button>
+                                    )}
+                                    <button type="submit" className="hidden md:inline bg-warning_main text-info_main font-semibold text-body1 py-2 px-5 rounded">
                                         Done
                                     </button>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <span onClick={() => setIsOpen(false)} className="absolute top-[90%] left-1/2 -translate-x-1/2 md:hidden rounded-full bg-black/20 p-2 cursor-pointer">
-                        <IoClose size={18} />
-                    </span>
+                        </div>
+                        <button type="submit" className=" bg-warning_main text-info_main font-semibold text-body1 py-2 px-5 rounded absolute top-[80%] left-1/2 -translate-x-1/2 md:hidden cursor-pointer">
+                            Done
+                        </button>
+                        {/* <span onClick={() => setIsOpen(false)} className="absolute top-[90%] left-1/2 -translate-x-1/2 md:hidden rounded-full bg-black/20 p-2 cursor-pointer">
+                            <IoClose size={18} />
+                        </span> */}
+                    </form>
                 </div>
             )}
         </div>

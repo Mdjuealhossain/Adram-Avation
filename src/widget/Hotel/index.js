@@ -6,19 +6,35 @@ import TravelerSelect from "@/components/TravelerSelect";
 
 const Hotel = () => {
     const [selected, setSelected] = useState(topDestinations[0]); // Default selection for "From"
+
+    const getNextDay = (date) => {
+        const nextDay = new Date(date);
+        nextDay.setDate(date.getDate() + 1);
+        return nextDay;
+    };
+    const [date, setDate] = useState([
+        {
+            startDate: new Date(2025, 2, 8),
+            endDate: getNextDay(new Date(2025, 2, 8)),
+            key: "selection",
+        },
+    ]);
     const handlePassenger = (data) => {
         console.log("data");
     };
+    console.log("selected", selected);
+
+    console.log("date?.startDate", date);
 
     return (
-        <div className=" grid grid-cols-5 gap-[10px]">
-            <div className=" col-span-2">
+        <div className=" grid md:grid-cols-5 grid-cols-1 gap-[10px]">
+            <div className=" md:col-span-2">
                 <SelectWithSearch options={topDestinations} options2={topProperties} isDouble label={"City/Hotel/Resort/Area"} selectedItem={selected} onSelect={setSelected} />
             </div>
-            <div className=" col-span-2">
-                <DatePicker oneWay={false} roundWay={true} service="hotel" />
+            <div className=" md:col-span-2">
+                <DatePicker date={date} onSelect={setDate} oneWay={false} getNextDay={getNextDay} roundWay={true} service="hotel" startLabel="Check In" endLabel="Check out" />
             </div>
-            <TravelerSelect onSelect={handlePassenger} label={"Traveler, Class"} />
+            <TravelerSelect onSelect={handlePassenger} label={"Traveler, Class"} service="hotel" menuClassName="md:!w-[400px] !right-0" />
         </div>
     );
 };
