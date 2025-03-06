@@ -12,7 +12,7 @@ import Visa from "../Visa";
 import Button from "@/components/Button";
 
 const HerroBanner = () => {
-    const [activeTabIndex, setActiveTabIndex] = useState("2");
+    const [activeTabIndex, setActiveTabIndex] = useState("1");
 
     const tabs = [
         {

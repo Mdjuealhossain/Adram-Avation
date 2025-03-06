@@ -26,6 +26,7 @@ export default {
                 disable: "",
                 gray_600: "#",
                 gray_500: "#",
+                gray_400: "#6e6b7b",
                 gray_300: "#",
                 divider: "rgba(34, 41, 47, .05)",
                 divider_2: "#dbdde0",
