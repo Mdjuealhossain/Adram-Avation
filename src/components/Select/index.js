@@ -5,7 +5,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 
-const SelectWithSearch = ({ label, onSelect = () => {}, options = [], options2 = [], selectedItem, hotel = false, isDouble = false }) => {
+const SelectWithSearch = ({ label, onSelect = () => {}, options = [], options2 = [], selectedItem, location = false, isDouble = false, menuClassName = "md:w-[350px]" }) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [isOpen, setIsOpen] = useState(false);
     const selectRef = useRef(null); // Create a ref for the dropdown
@@ -44,7 +44,7 @@ const SelectWithSearch = ({ label, onSelect = () => {}, options = [], options2 =
             </div>
 
             {isOpen && (
-                <div className={`md:absolute ${isDouble ? " md:w-[500px]" : " md:w-[350px]"} fixed inset-0 md:inset-auto md:mt-1 bg-white border rounded-md shadow-lg z-20`}>
+                <div className={`md:absolute  ${menuClassName} fixed inset-0 md:inset-auto md:mt-1 bg-white border rounded-md shadow-lg z-20`}>
                     <div className="relative py-2">
                         <IoIosSearch className="absolute top-1/2 left-4 -translate-y-1/2 text-black/40" />
                         <input type="text" placeholder="Type to search" className="p-2 pl-9 border-b text-body2 placeholder:text-body2 focus:outline-none" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
@@ -85,6 +85,14 @@ const SelectWithSearch = ({ label, onSelect = () => {}, options = [], options2 =
                                     ))}
                                 </ul>
                             </div>
+                        </div>
+                    ) : location ? (
+                        <div className="md:max-h-72overflow-y-auto">
+                            {filteredItems.map((item) => (
+                                <div key={item.id} className="py-2 px-4 hover:bg-blue-100 cursor-pointer flex items-center justify-between" onClick={() => handleSelect(item)}>
+                                    <div className="text-body1 text-info_main">{item.name}</div>
+                                </div>
+                            ))}
                         </div>
                     ) : (
                         <div className="md:max-h-72overflow-y-auto">

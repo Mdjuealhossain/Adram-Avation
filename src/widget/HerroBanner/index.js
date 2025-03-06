@@ -7,6 +7,7 @@ import { MdTour } from "react-icons/md";
 import { FaCcVisa } from "react-icons/fa6";
 import Flight from "../Flight";
 import Hotel from "../Hotel";
+import Tour from "../Tour";
 
 const HerroBanner = () => {
     const [activeTabIndex, setActiveTabIndex] = useState("2");
@@ -45,6 +46,7 @@ const HerroBanner = () => {
                 <div className=" md:px-[30px] md:pt-[50px] md:pb-10 pt-10 px-4 pb-6 bg-white relative shadow-service rounded-[20px]">
                     {activeTabIndex == "1" && <Flight />}
                     {activeTabIndex == "2" && <Hotel />}
+                    {activeTabIndex == "3" && <Tour />}
                 </div>
             </Container>
         </div>

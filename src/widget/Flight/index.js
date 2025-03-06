@@ -41,10 +41,6 @@ const Flight = () => {
         },
     ]);
 
-    // console.log("selected", selected);
-
-    console.log("date?.startDate", selectedFrom);
-
     return (
         <div>
             <div className="flex items-center gap-4 mb-1">
@@ -110,7 +106,7 @@ const Flight = () => {
                         <DatePicker getNextDay={getNextDay} date={date} onSelect={setDate} roundWay={roundWay} setRoundWay={setRoundWay} oneWay={oneWay} setOneWay={setOneWay} multiCity={multiCity} setMultiCity={setMultiCity} startLabel="journy date" endLabel="return date" />
                     </div>
                     <div className=" lg:col-span-2 col-span-5">
-                        <TravelerSelect onSelect={handlePassenger} service={"flight"} label={"Traveler, Class"} />
+                        <TravelerSelect maxAdult={5} maxChildren={4} onSelect={handlePassenger} service={"flight"} label={"Traveler, Class"} />
                     </div>
                 </div>
             </div>

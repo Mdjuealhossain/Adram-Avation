@@ -20,7 +20,7 @@ const Hotel = () => {
         },
     ]);
     const handlePassenger = (data) => {
-        console.log("data");
+        console.log("data-hotel", data);
     };
     console.log("selected", selected);
 
@@ -29,12 +29,12 @@ const Hotel = () => {
     return (
         <div className=" grid md:grid-cols-5 grid-cols-1 gap-[10px]">
             <div className=" md:col-span-2">
-                <SelectWithSearch options={topDestinations} options2={topProperties} isDouble label={"City/Hotel/Resort/Area"} selectedItem={selected} onSelect={setSelected} />
+                <SelectWithSearch options={topDestinations} menuClassName={"md:w-[500px]"} options2={topProperties} isDouble label={"City/Hotel/Resort/Area"} selectedItem={selected} onSelect={setSelected} />
             </div>
             <div className=" md:col-span-2">
                 <DatePicker date={date} onSelect={setDate} oneWay={false} getNextDay={getNextDay} roundWay={true} service="hotel" startLabel="Check In" endLabel="Check out" />
             </div>
-            <TravelerSelect onSelect={handlePassenger} label={"Traveler, Class"} service="hotel" menuClassName="md:!w-[400px] !right-0" />
+            <TravelerSelect onSelect={handlePassenger} label={"Rooms & Guests"} service="hotel" menuClassName="md:!w-[400px] !right-0" maxAdult={100} maxChildren={4} />
         </div>
     );
 };
