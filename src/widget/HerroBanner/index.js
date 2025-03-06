@@ -10,9 +10,11 @@ import Hotel from "../Hotel";
 import Tour from "../Tour";
 import Visa from "../Visa";
 import Button from "@/components/Button";
+import { useRouter } from "next/navigation";
 
 const HerroBanner = () => {
     const [activeTabIndex, setActiveTabIndex] = useState("1");
+    const router = useRouter();
 
     const tabs = [
         {
@@ -37,12 +39,28 @@ const HerroBanner = () => {
         },
     ];
 
+    const handleTab = (tab) => {
+        setActiveTabIndex(tab.id);
+        if (typeof window !== "undefined") {
+            router.push(`/?search=${tab.label.toLowerCase()}`, { shallow: true });
+        }
+    };
+
     return (
         <div style={{ backgroundImage: "url('/assets/images/banner.jpg')" }} className="bg-cover bg-center h-[650px] flex items-center justify-center">
             <Container className={" relative"}>
                 <div className="bg-white shadow-tabs md:px-[60px] px-10 rounded-lg z-10 absolute left-1/2 -translate-x-1/2 -top-12 flex items-center">
                     {tabs.map((tab) => (
-                        <Tab key={tab.id} isActive={activeTabIndex == tab.id} onClick={() => setActiveTabIndex(tab.id)} label={tab.label} icon={tab.icon} />
+                        <Tab
+                            key={tab.id}
+                            isActive={activeTabIndex == tab.id}
+                            onClick={() => {
+                                setActiveTabIndex(tab.id);
+                                router.push(`/?search=${tab.label.toLowerCase()}`, { shallow: true });
+                            }}
+                            label={tab.label}
+                            icon={tab.icon}
+                        />
                     ))}
                 </div>
                 <div className=" md:px-[30px] md:pt-[50px] md:pb-10 pt-10 px-4 pb-6 bg-white relative shadow-service rounded-[20px]">
