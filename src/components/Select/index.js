@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useState, useRef, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
+import { SlArrowLeft } from "react-icons/sl";
 
 const SelectWithSearch = ({ label, onSelect = () => {}, options = [], options2 = [], selectedItem, location = false, isDouble = false, menuClassName = "md:w-[350px]" }) => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -40,77 +41,92 @@ const SelectWithSearch = ({ label, onSelect = () => {}, options = [], options2 =
             <div onClick={() => setIsOpen(!isOpen)} className={`border md:px-4 px-3 py-2 border-divider_2 rounded-[10px] cursor-pointer ${isOpen ? " bg-info_deep_light" : " bg-transparent"}`}>
                 <p className="text-body2 mb-1 text-info_main uppercase">{label}</p>
                 <p className="text-subtitle1 font-bold text-info_main capitalize line-clamp-1">{selectedItem?.name || "Select a city"}</p>
-                <p className="text-body2 line-clamp-1 capitalize">{selectedItem?.fullName || selectedItem?.country}</p>
+                <p className="text-body2 line-clamp-1 capitalize">{selectedItem?.fullName || selectedItem?.country || <span className=" h-3 block"></span>}</p>
             </div>
-
             {isOpen && (
                 <div className={`md:absolute  ${menuClassName} fixed inset-0 md:inset-auto md:mt-1 bg-white border rounded-md shadow-lg z-20`}>
                     <div className="relative py-2">
-                        <IoIosSearch className="absolute top-1/2 left-4 -translate-y-1/2 text-black/40" />
-                        <input type="text" placeholder="Type to search" className="p-2 pl-9 border-b text-body2 placeholder:text-body2 focus:outline-none" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                        <IoIosSearch size={18} className="absolute top-1/2 left-3 hidden md:inline -translate-y-1/2 text-black/40" />
+                        <SlArrowLeft onClick={() => setIsOpen(false)} size={18} className="absolute top-1/2 left-2 md:hidden -translate-y-1/2 text-black/40" />
+                        <input type="text" placeholder="Type to search" className="p-2 pl-9 w-full border-b text-body2 placeholder:text-body2 focus:outline-none" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                        <span onClick={() => setSearchTerm("")} className="absolute top-1/2 right-4 cursor-pointer -translate-y-1/2 rounded-full bg-black/20 p-1">
+                            <IoClose />
+                        </span>
                     </div>
                     {isDouble ? (
                         <div className=" flex p-4 pt-[10px] ">
                             <div className=" w-1/2">
                                 <h2 className=" text-subtitle1 font-semibold text-info_main mb-4">Top Destinations</h2>
                                 <ul className="mt-2 space-y-[10px]">
-                                    {filteredItems.map((item, index) => (
-                                        <li key={index} onClick={() => handleSelect(item)} className="flex items-center gap-2 cursor-pointer">
-                                            <Image src={item.image} alt={item.name} height={40} width={40} className="w-10 h-10 rounded-md" />
-                                            <div>
-                                                <div className=" relative flex">
-                                                    <p className=" text-body1 font-semibold line-clamp-1 relative">{item.name}</p>
-                                                    {item.hot && <span className=" "> 🔥 </span>}
+                                    {filteredItems.length > 0 ? (
+                                        filteredItems.map((item, index) => (
+                                            <li key={index} onClick={() => handleSelect(item)} className="flex items-center gap-2 cursor-pointer">
+                                                <Image src={item.image} alt={item.name} height={40} width={40} className="w-10 h-10 rounded-md" />
+                                                <div>
+                                                    <div className=" relative flex">
+                                                        <p className=" text-body1 font-semibold line-clamp-1 relative">{item.name}</p>
+                                                        {item.hot && <span className=" "> 🔥 </span>}
+                                                    </div>
+                                                    <p className=" text-body2 line-clamp-1">{item.location}</p>
                                                 </div>
-                                                <p className=" text-body2 line-clamp-1">{item.location}</p>
-                                            </div>
-                                        </li>
-                                    ))}
+                                            </li>
+                                        ))
+                                    ) : (
+                                        <p className=" font-semibold text-center text-body1 py-2 text-secondary/50">Not Found Destinations</p>
+                                    )}
                                 </ul>
                             </div>
                             <div className=" w-1/2 z-10">
                                 <h2 className=" text-subtitle1 font-semibold text-info_main mb-4">Top Properties</h2>
                                 <ul className="mt-2 space-y-[10px]">
-                                    {filteredItems2.map((item, index) => (
-                                        <li key={index} onClick={() => handleSelect(item)} className="flex items-center gap-2 cursor-pointer">
-                                            <Image src={item.image} alt={item.name} height={40} width={40} className="w-10 h-10 rounded-md" />
-                                            <div>
-                                                <div className=" relative flex">
-                                                    <p className=" text-body1 font-semibold line-clamp-1 relative">{item.name}</p>
-                                                    {item.hot && <span className=" "> 🔥 </span>}
+                                    {filteredItems2.length > 0 ? (
+                                        filteredItems2.map((item, index) => (
+                                            <li key={index} onClick={() => handleSelect(item)} className="flex items-center gap-2 cursor-pointer">
+                                                <Image src={item.image} alt={item.name} height={40} width={40} className="w-10 h-10 rounded-md" />
+                                                <div>
+                                                    <div className=" relative flex">
+                                                        <p className=" text-body1 font-semibold line-clamp-1 relative">{item.name}</p>
+                                                        {item.hot && <span className=" "> 🔥 </span>}
+                                                    </div>
+                                                    <p className=" text-body2 line-clamp-1">{item.location}</p>
                                                 </div>
-                                                <p className=" text-body2 line-clamp-1">{item.location}</p>
-                                            </div>
-                                        </li>
-                                    ))}
+                                            </li>
+                                        ))
+                                    ) : (
+                                        <p className=" font-semibold text-center text-body1 py-2 text-secondary/50">Not Found Properties</p>
+                                    )}
                                 </ul>
                             </div>
                         </div>
                     ) : location ? (
                         <div className="md:max-h-72overflow-y-auto">
-                            {filteredItems.map((item) => (
-                                <div key={item.id} className="py-2 px-4 hover:bg-blue-100 cursor-pointer flex items-center justify-between" onClick={() => handleSelect(item)}>
-                                    <div className="text-body1 text-info_main">{item.name}</div>
-                                </div>
-                            ))}
+                            {filteredItems.length > 0 ? (
+                                filteredItems.map((item) => (
+                                    <div key={item.id} className="py-2 px-4 hover:bg-blue-100 cursor-pointer flex items-center justify-between" onClick={() => handleSelect(item)}>
+                                        <div className="text-body1 text-info_main">{item.name}</div>
+                                    </div>
+                                ))
+                            ) : (
+                                <p className=" font-semibold text-center text-body1 py-2 text-secondary/50">Not Found {label}</p>
+                            )}
                         </div>
                     ) : (
                         <div className="md:max-h-72overflow-y-auto">
-                            {filteredItems.map((item) => (
-                                <div key={item.id} className="py-2 px-4 hover:bg-blue-100 cursor-pointer flex items-center justify-between" onClick={() => handleSelect(item)}>
-                                    <div>
-                                        <div className="text-body1 font-bold text-info_main">{item.name}</div>
-                                        <div className="text-body2 text-info_main">{item.fullName}</div>
+                            {filteredItems.length > 0 ? (
+                                filteredItems.map((item) => (
+                                    <div key={item.id} className="py-2 px-4 hover:bg-blue-100 cursor-pointer flex items-center justify-between" onClick={() => handleSelect(item)}>
+                                        <div>
+                                            <div className="text-body1 font-bold text-info_main">{item.name}</div>
+                                            <div className="text-body2 text-info_main">{item.fullName}</div>
+                                        </div>
+                                        <p className="text-body1 font-bold text-info_light">xscx</p>
                                     </div>
-                                    <p className="text-body1 font-bold text-info_light">xscx</p>
-                                </div>
-                            ))}
+                                ))
+                            ) : (
+                                <p className=" font-semibold text-center text-body1 py-2 text-secondary/50">Not Found Location</p>
+                            )}
                         </div>
                     )}
-
-                    <span onClick={() => setIsOpen(false)} className="absolute top-[90%] left-1/2 -translate-x-1/2 rounded-full bg-black/20 p-2 md:hidden">
-                        <IoClose size={18} />
-                    </span>
                 </div>
             )}
         </div>

@@ -132,7 +132,7 @@ const DatePicker = ({ roundWay, setRoundWay, oneWay, setOneWay, multiCity, setMu
 
             {/* Date Range Picker */}
             {isOpen && (
-                <div className="md:mt-1 z-10 md:absolute   lg:!-left-44 xl:!-left-11 fixed inset-0 md:inset-auto md:top-full bg-white px-2 py-6 flex flex-col items-center justify-center">
+                <div className="md:mt-1 md:absolute z-20  lg:!-left-44 xl:!-left-11 fixed inset-0 md:inset-auto md:top-full bg-white px-2 py-6 flex flex-col items-center justify-center">
                     <p className="mb-2 font-semibold text-center capitalize">Select {type} Date</p>
                     <DateRange
                         key={roundWay ? "return" : "journey"}

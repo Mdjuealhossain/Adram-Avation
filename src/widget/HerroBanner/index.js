@@ -8,6 +8,8 @@ import { FaCcVisa } from "react-icons/fa6";
 import Flight from "../Flight";
 import Hotel from "../Hotel";
 import Tour from "../Tour";
+import Visa from "../Visa";
+import Button from "@/components/Button";
 
 const HerroBanner = () => {
     const [activeTabIndex, setActiveTabIndex] = useState("2");
@@ -47,6 +49,12 @@ const HerroBanner = () => {
                     {activeTabIndex == "1" && <Flight />}
                     {activeTabIndex == "2" && <Hotel />}
                     {activeTabIndex == "3" && <Tour />}
+                    {activeTabIndex == "4" && <Visa />}
+                    <form className=" relative">
+                        <Button size="large" className={" bg-warning_main text-info_main !text-H4 font-semibold absolute top-3 left-1/2 -translate-x-1/2"}>
+                            search
+                        </Button>
+                    </form>
                 </div>
             </Container>
         </div>
