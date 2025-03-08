@@ -3,8 +3,11 @@
 import Image from "next/image";
 import React, { useState, useRef, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
-import { IoClose } from "react-icons/io5";
+import { IoClose, IoLocation } from "react-icons/io5";
+import { TiLocation } from "react-icons/ti";
+
 import { SlArrowLeft } from "react-icons/sl";
+import { MdLocationPin } from "react-icons/md";
 
 const SelectWithSearch = ({ label, onSelect = () => {}, options = [], options2 = [], selectedItem, location = false, isDouble = false, menuClassName = "md:w-[350px]" }) => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -40,7 +43,7 @@ const SelectWithSearch = ({ label, onSelect = () => {}, options = [], options2 =
         <div className="relative w-full" ref={selectRef}>
             <div onClick={() => setIsOpen(!isOpen)} className={`border md:px-4 px-3 py-2 border-divider_2 rounded-[10px] cursor-pointer ${isOpen ? " bg-info_deep_light" : " bg-transparent"}`}>
                 <p className="text-body2 mb-1 text-info_main uppercase">{label}</p>
-                <p className="text-subtitle1 font-bold text-info_main capitalize line-clamp-1">{selectedItem?.name || "Select a city"}</p>
+                <p className="text-H4 font-bold text-info_main capitalize line-clamp-1">{selectedItem?.name || "Select a city"}</p>
                 <p className="text-body2 line-clamp-1 capitalize">{selectedItem?.fullName || selectedItem?.country || <span className=" h-3 block"></span>}</p>
             </div>
             {isOpen && (
@@ -103,7 +106,10 @@ const SelectWithSearch = ({ label, onSelect = () => {}, options = [], options2 =
                             {filteredItems.length > 0 ? (
                                 filteredItems.map((item) => (
                                     <div key={item.id} className="py-2 px-4 hover:bg-blue-100 cursor-pointer flex items-center justify-between" onClick={() => handleSelect(item)}>
-                                        <div className="text-body1 text-info_main">{item.name}</div>
+                                        <div className=" flex items-center gap-2">
+                                            <MdLocationPin size={20} className=" text-black/50" />
+                                            <div className="text-body1 text-info_main  font-light">{item.name}</div>
+                                        </div>
                                     </div>
                                 ))
                             ) : (
