@@ -2,6 +2,7 @@
 import Button from "@/components/Button";
 import Container from "@/components/Container";
 import SelectWithSearch from "@/components/Select";
+import FilterTourLists from "@/widget/FilterTourLists";
 import TourLists from "@/widget/TourLists";
 import React, { useState } from "react";
 
@@ -12,9 +13,9 @@ const Tour = () => {
         <div>
             <section className=" bg-white pt-10 md:pt-20 mb-4 pb-4">
                 <Container>
-                    <div className=" flex items-center gap-4">
+                    <div className=" flex flex-col md:flex-row items-center gap-4">
                         <SelectWithSearch options={tourLocations} location={true} label={"Location/ Tour"} menuClassName={" w-full"} selectedItem={selected} onSelect={setSelected} />
-                        <Button size="large" className={"bg-warning_main font-semibold text-H4"}>
+                        <Button size="large" className={"bg-warning_main w-full md:w-auto font-semibold text-info_main text-H4"}>
                             Modify
                             <br />
                             Search
@@ -24,7 +25,12 @@ const Tour = () => {
             </section>
             <section>
                 <Container>
-                    <TourLists />
+                    <div className=" grid md:grid-cols-4 gap-6">
+                        <FilterTourLists />
+                        <div className=" md:col-span-3">
+                            <TourLists />
+                        </div>
+                    </div>
                 </Container>
             </section>
         </div>

@@ -33,7 +33,7 @@ const ImageURL = ({ image, className, height, width, alt }) => {
                     className={`${className} max-h-full h-auto max-w-full w-auto`}
                     height={height}
                     width={width}
-                    src={`https://medisourcebd.com/${image}`}
+                    src={`${image}`}
                     alt={alt}
                     onLoad={handleImageLoad}
                     style={{
