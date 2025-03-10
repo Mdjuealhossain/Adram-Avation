@@ -13,6 +13,7 @@ export default {
                 secondary: "#3a4856",
                 default: "#ebf0f4",
                 paper: "",
+                primary_light: "#b0dfee",
                 warning_light: "",
                 warning_main: "#fdcc02",
                 info_deep_light: "rgba(153, 194, 255, .322)",
@@ -35,6 +36,7 @@ export default {
                 menu: "0 5px 25px rgba(34, 41, 47, .1)",
                 service: "0 20px 100px 10px rgba(24, 33, 77, .05)",
                 tabs: "0 4px 10px rgba(0, 117, 255, .09)",
+                tour_list: "0 8px 12px rgba(51, 65, 80, .06), 0 0 12px rgba(51, 65, 80, .06)",
             },
             fontSize: {
                 xxs: ".5rem", // 8px
@@ -50,6 +52,9 @@ export default {
                 "6xl": "2.25rem", //"36px",
             },
             maxWidth: {
+                md: "540px",
+                lg: "720px",
+                xl: "960px",
                 "2xl": "1140px",
             },
         },
@@ -59,40 +64,40 @@ export default {
         function ({ addComponents, theme }) {
             addComponents({
                 ".text-H1": {
-                    fontSize: theme("fontSize.3xl"),
-
-                    "@screen md": {
-                        fontSize: theme("fontSize.4xl"), // Large screen
-                    },
-                    "@screen 2xl": {
-                        fontSize: theme("fontSize.3xl"), // Biggest screen
-                    },
-                },
-                ".text-H2": {
-                    fontSize: theme("fontSize.2xl"),
-
-                    "@screen md": {
-                        fontSize: theme("fontSize.3xl"), // Large screen
-                    },
-                    "@screen 2xl": {
-                        fontSize: theme("fontSize.2xl"), // Biggest screen
-                    },
-                },
-                ".text-H3": {
                     fontSize: theme("fontSize.xl"),
 
                     "@screen md": {
                         fontSize: theme("fontSize.2xl"), // Large screen
                     },
                     "@screen 2xl": {
-                        fontSize: theme("fontSize.xl"), // Biggest screen
+                        fontSize: theme("fontSize.3xl"), // Biggest screen
                     },
                 },
-                ".text-H4": {
+                ".text-H2": {
                     fontSize: theme("fontSize.lg"),
 
                     "@screen md": {
                         fontSize: theme("fontSize.xl"), // Large screen
+                    },
+                    "@screen 2xl": {
+                        fontSize: theme("fontSize.2xl"), // Biggest screen
+                    },
+                },
+                ".text-H3": {
+                    fontSize: theme("fontSize.base"),
+
+                    "@screen md": {
+                        fontSize: theme("fontSize.lg"), // Large screen
+                    },
+                    "@screen 2xl": {
+                        fontSize: theme("fontSize.xl"), // Biggest screen
+                    },
+                },
+                ".text-H4": {
+                    fontSize: theme("fontSize.sm"),
+
+                    "@screen md": {
+                        fontSize: theme("fontSize.base"), // Large screen
                     },
                     "@screen 2xl": {
                         fontSize: theme("fontSize.lg"), // Biggest screen

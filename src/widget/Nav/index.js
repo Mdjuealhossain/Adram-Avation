@@ -18,7 +18,7 @@ const Nav = () => {
 
     return (
         <>
-            <div className="fixed left-0 top-0 right-0 z-20">
+            <div className="fixed left-0 top-0 right-0 z-20 bg-white">
                 <Container>
                     <nav className="flex items-center justify-between md:h-20 h-16">
                         {/* Logo */}

@@ -1,17 +1,29 @@
+"use client";
 import Card from "@/components/Card";
 import Offer from "@/components/Offer";
-import React from "react";
+import React, { useState } from "react";
 
 const TourLists = () => {
+    const [selectedOptions, setSelectedOptions] = useState([]);
+    const handleSelect = (option) => {
+        if (selectedOptions.includes(option.id)) {
+            // If already selected, remove it from the array
+            setSelectedOptions(selectedOptions.filter((id) => id !== option.id));
+        } else {
+            // If not selected, add it to the array
+            setSelectedOptions([...selectedOptions, option.id]);
+        }
+    };
+
+    console.log("selectedOptions", selectedOptions);
+
     return (
         <div>
             <div>
-                <div className=" flex gap-3 mb-3 overflow-x-auto">
-                    <Offer />
-                    <Offer />
-                    <Offer />
-                    <Offer />
-                    <Offer />
+                <div className="flex gap-3 mb-3 overflow-x-auto w-full justify-between " style={{ scrollbarWidth: "none" }}>
+                    {options.map((option) => (
+                        <Offer key={option.id} {...option} onSelect={() => handleSelect(option)} className={`${selectedOptions.includes(option.id) ? "bg-primary_light " : "bg-white "}`} />
+                    ))}
                 </div>
             </div>
             <div className=" flex flex-col gap-3">
@@ -24,11 +36,18 @@ const TourLists = () => {
 };
 
 export default TourLists;
+const options = [
+    { id: 1, label: "Attractions & Shows", icon: "/assets/images/tour/attractions.png" },
+    { id: 2, label: "Activities & Experiences", icon: "/assets/images/tour/attractions.png" },
+    { id: 3, label: "Sightseeing & Day-Tours", icon: "/assets/images/tour/attractions.png" },
+    { id: 4, label: "Day-Out Packages", icon: "/assets/images/tour/attractions.png" },
+    { id: 5, label: "Adventure", icon: "/assets/images/tour/attractions.png" },
+];
 
 const cardsData = [
     {
         image: "/assets/images/tour/tour.jpg",
-        title: "Honeymoon at Cox's Bazar - Package Tour with Flight and Hotel",
+        title: "Honeymoon at Cox's Baza  the beginning of the experience/tour",
         location: "Cox's Bazar",
         duration: "3 day's",
         groupSize: "From 2 to 6 people",
@@ -212,7 +231,7 @@ const cardsData = [
         location: "Dubai",
         duration: "4 days",
         groupSize: "From 1 to 5 people",
-        description: "Tour the most iconic landmarks in Dubai.",
+        description: "Tour the most iconi dmarks in Dubai.",
         price: "20000",
         discount: null,
     },

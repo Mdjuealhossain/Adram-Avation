@@ -43,7 +43,7 @@ const SelectWithSearch = ({ label, onSelect = () => {}, options = [], options2 =
         <div className="relative w-full" ref={selectRef}>
             <div onClick={() => setIsOpen(!isOpen)} className={`border md:px-4 px-3 py-2 border-divider_2 rounded-[10px] cursor-pointer ${isOpen ? " bg-info_deep_light" : " bg-transparent"}`}>
                 <p className="text-body2 mb-1 text-info_main uppercase">{label}</p>
-                <p className="text-H4 font-bold text-info_main capitalize line-clamp-1">{selectedItem?.name || "Select a city"}</p>
+                <p className="text-H4  font-semibold text-info_main capitalize line-clamp-1">{selectedItem?.name || "Select a city"}</p>
                 <p className="text-body2 line-clamp-1 capitalize">{selectedItem?.fullName || selectedItem?.country || <span className=" h-3 block"></span>}</p>
             </div>
             {isOpen && (

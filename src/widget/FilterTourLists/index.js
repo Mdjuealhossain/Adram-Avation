@@ -1,11 +1,11 @@
 "use client";
-import Button from "@/components/Button";
-import React, { useEffect } from "react";
-import { BsCheckSquareFill } from "react-icons/bs";
+import { useEffect } from "react";
 import { MdOutlineLightMode } from "react-icons/md";
 import { Range } from "react-range";
 import { useForm, Controller } from "react-hook-form";
+
 import FilterCheckboxGroup from "@/components/FilterCheckboxGroup";
+import Button from "@/components/Button";
 
 const FilterTourLists = () => {
     const { control, watch, reset, setValue } = useForm({
@@ -87,98 +87,117 @@ const FilterTourLists = () => {
 
     return (
         <>
-            <div className=" bg-white hidden md:block ">
+            <div className=" bg-white  ">
                 <div className="border-b border-divider_2">
                     <p className="text-subtitle1 font-semibold text-info_main px-4 pt-4">Destination: 1 place found</p>
                     <p className="text-subtitle1 font-semibold text-info_main p-4">Filter By</p>
                 </div>
-                <form className="p-4">
-                    {/* Price Range Filter */}
-                    <div className="border-b border-divider_2 pb-4">
-                        <p className="text-subtitle1 font-semibold text-info_main mb-1 pb-1">Price Range</p>
-                        <Controller
-                            name="priceRange"
-                            control={control}
-                            render={({ field }) => (
-                                <Range
-                                    {...field}
-                                    step={1.1}
-                                    key={field.name}
-                                    min={1}
-                                    max={12}
-                                    values={field.value}
-                                    onChange={(values) => field.onChange(values)}
-                                    aria-labelledby="price-range-label"
-                                    renderTrack={({ props, children }) => (
-                                        <div
-                                            {...props}
-                                            style={{
-                                                ...props.style,
-                                                height: "4px",
-                                                width: "100%",
-                                                backgroundColor: "#dbdde0",
-                                            }}
-                                        >
-                                            {children}
-                                        </div>
-                                    )}
-                                    renderThumb={({ props }) => (
-                                        <div
-                                            {...props}
-                                            key={props.key}
-                                            style={{
-                                                ...props.style,
-                                                height: "14px",
-                                                width: "14px",
-                                                backgroundColor: "#00026e",
-                                                borderRadius: "50%",
-                                            }}
-                                        />
-                                    )}
-                                />
-                            )}
-                        />
-                        <div className="flex items-center justify-between text-info_main font-serif uppercase pt-4">
-                            <p className="font-poppins">{`BDT ${priceRange[0] * 1000}`}</p>
-                            <p className="font-poppins">{`BDT ${priceRange[1] * 1000}`}</p>
+                <form className=" overflow-auto relative">
+                    <div className="overflow-y-auto lg:overflow-hidden max-h-[400px] sm:max-h-[600px]  p-4">
+                        {/* Price Range Filter */}
+                        <div className="border-b border-divider_2 pb-4">
+                            <p className="text-subtitle1 font-semibold text-info_main mb-1 pb-1">Price Range</p>
+                            <Controller
+                                name="priceRange"
+                                control={control}
+                                render={({ field }) => (
+                                    <Range
+                                        {...field}
+                                        step={1.1}
+                                        key={field.name}
+                                        min={1}
+                                        max={12}
+                                        values={field.value}
+                                        onChange={(values) => field.onChange(values)}
+                                        aria-labelledby="price-range-label"
+                                        renderTrack={({ props, children }) => (
+                                            <div
+                                                {...props}
+                                                style={{
+                                                    ...props.style,
+                                                    height: "4px",
+                                                    width: "100%",
+                                                    backgroundColor: "#dbdde0",
+                                                }}
+                                            >
+                                                {children}
+                                            </div>
+                                        )}
+                                        renderThumb={({ props }) => (
+                                            <div
+                                                {...props}
+                                                key={props.key}
+                                                style={{
+                                                    ...props.style,
+                                                    height: "14px",
+                                                    width: "14px",
+                                                    backgroundColor: "#00026e",
+                                                    borderRadius: "50%",
+                                                }}
+                                            />
+                                        )}
+                                    />
+                                )}
+                            />
+                            <div className="flex items-center justify-between text-info_main font-serif uppercase pt-4">
+                                <p className="font-poppins">{`BDT ${priceRange[0] * 1000}`}</p>
+                                <p className="font-poppins">{`BDT ${priceRange[1] * 1000}`}</p>
+                            </div>
+                        </div>
+
+                        {/* Duration Filter */}
+                        <div className="mb-4">
+                            <FilterCheckboxGroup
+                                title="Duration"
+                                options={filterOptions}
+                                selectedFilters={filters}
+                                onChange={(id) => handleFilterChange(id)} // Use handleFilterChange for filters
+                            />
+                        </div>
+
+                        {/* Time Selection */}
+                        <div className="pb-4 border-b border-divider_2">
+                            <p className="text-subtitle1 font-semibold text-info_main pb-1">Time</p>
+                            <div className=" grid grid-cols-4 border rounded">
+                                {times.map((time) => (
+                                    <div key={time.id} onClick={() => handleTimeSelect(time.id)} className={`${isTime.includes(time.id) ? "bg-info_main text-white" : ""} py-1 xl:px-[14px]  cursor-pointer whitespace-nowrap border-r gap-1 border-divider_2 flex flex-col items-center justify-center`}>
+                                        <MdOutlineLightMode className={`${isTime.includes(time.id) ? "text-white" : "text-info_light"}`} />
+                                        <p className="text-[10px] font-light">{time.time}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Tag Filter */}
+                        <div className="mb-4">
+                            <FilterCheckboxGroup
+                                title="Tags"
+                                options={filterTags}
+                                selectedFilters={tags}
+                                onChange={(id) => handleTagsChange(id)} // Use handleTagsChange for tags
+                            />
+                        </div>
+                        {/* Tag Filter */}
+                        <div className="mb-4">
+                            <FilterCheckboxGroup
+                                title="Tags"
+                                options={filterTags}
+                                selectedFilters={tags}
+                                onChange={(id) => handleTagsChange(id)} // Use handleTagsChange for tags
+                            />
+                        </div>
+                        {/* Tag Filter */}
+                        <div className="mb-4">
+                            <FilterCheckboxGroup
+                                title="Tags"
+                                options={filterTags}
+                                selectedFilters={tags}
+                                onChange={(id) => handleTagsChange(id)} // Use handleTagsChange for tags
+                            />
                         </div>
                     </div>
-
-                    {/* Duration Filter */}
-                    <div className="mb-4">
-                        <FilterCheckboxGroup
-                            title="Duration"
-                            options={filterOptions}
-                            selectedFilters={filters}
-                            onChange={(id) => handleFilterChange(id)} // Use handleFilterChange for filters
-                        />
-                    </div>
-
-                    {/* Time Selection */}
-                    <div className="pb-4 border-b border-divider_2">
-                        <p className="text-subtitle1 font-semibold text-info_main pb-1">Time</p>
-                        <div className="flex items-center justify-center border rounded">
-                            {times.map((time) => (
-                                <div key={time.id} onClick={() => handleTimeSelect(time.id)} className={`${isTime.includes(time.id) ? "bg-info_main text-white" : ""} py-1 px-[14px] cursor-pointer whitespace-nowrap border-r gap-1 border-divider_2 flex flex-col items-center justify-center`}>
-                                    <MdOutlineLightMode className={`${isTime.includes(time.id) ? "text-white" : "text-info_light"}`} />
-                                    <p className="text-[10px] font-light">{time.time}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Tag Filter */}
-                    <div className="mb-4">
-                        <FilterCheckboxGroup
-                            title="Tags"
-                            options={filterTags}
-                            selectedFilters={tags}
-                            onChange={(id) => handleTagsChange(id)} // Use handleTagsChange for tags
-                        />
-                    </div>
-
                     {/* Reset Button */}
-                    <div className="py-4 mt-4">
+                    <div className="py-4 mt-4 px-4 ">
                         <Button type="button" className="bg-warning_main text-info_main font-semibold w-full" onClick={handleReset}>
                             Reset Filter
                         </Button>

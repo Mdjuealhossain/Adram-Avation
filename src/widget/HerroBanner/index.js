@@ -46,6 +46,21 @@ const HerroBanner = () => {
         }
     };
 
+    const onSubmite = () => {
+        if (activeTabIndex == "1") {
+            router.push(`/flight`);
+        }
+        if (activeTabIndex == "2") {
+            router.push(`/hotel`);
+        }
+        if (activeTabIndex == "3") {
+            router.push(`/tour`);
+        }
+        if (activeTabIndex == "4") {
+            router.push(`/visa`);
+        }
+    };
+
     return (
         <div style={{ backgroundImage: "url('/assets/images/banner.jpg')" }} className="bg-cover bg-center h-[650px] flex items-center justify-center">
             <Container className={" relative"}>
@@ -69,7 +84,7 @@ const HerroBanner = () => {
                     {activeTabIndex == "3" && <Tour />}
                     {activeTabIndex == "4" && <Visa />}
                     <form className=" relative">
-                        <Button size="large" className={" bg-warning_main text-info_main !text-H4 font-semibold absolute top-3 left-1/2 -translate-x-1/2"}>
+                        <Button onClick={onSubmite} size="large" className={" bg-warning_main text-info_main !text-H4 font-semibold absolute top-3 left-1/2 -translate-x-1/2"}>
                             search
                         </Button>
                     </form>

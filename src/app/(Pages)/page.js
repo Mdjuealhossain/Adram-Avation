@@ -6,7 +6,6 @@ const Home = () => {
         <div>
             <section>
                 <HerroBanner />
-                dsf
             </section>
         </div>
     );
