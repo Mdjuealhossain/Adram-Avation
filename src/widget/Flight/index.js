@@ -7,7 +7,7 @@ import TravelerSelect from "@/components/TravelerSelect";
 import { IoClose } from "react-icons/io5";
 import DatePicker from "../DatePicker";
 
-const Flight = () => {
+const FlightService = () => {
     const [oneWay, setOneWay] = useState(true);
     const [roundWay, setRoundWay] = useState(false);
     const [multiCity, setMultiCity] = useState(false);
@@ -114,7 +114,7 @@ const Flight = () => {
     );
 };
 
-export default Flight;
+export default FlightService;
 const airports = [
     { id: 1, name: "Dhaka, Bangladesh", fullName: "Hazrat Shahjalal International Airport" },
     { id: 2, name: "Cox's Bazar, Bangladesh", fullName: "Cox's Bazar Airport" },

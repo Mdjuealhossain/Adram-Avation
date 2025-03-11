@@ -2,13 +2,12 @@
 import SelectWithSearch from "@/components/Select";
 import React, { useState } from "react";
 
-const Tour = () => {
+const TourService = () => {
     const [selected, setSelected] = useState(tourLocations[0]); // Default selection for "From"
-
     return <SelectWithSearch options={tourLocations} location={true} label={"Location/ Tour"} menuClassName={" w-full"} selectedItem={selected} onSelect={setSelected} />;
 };
 
-export default Tour;
+export default TourService;
 const tourLocations = [
     { id: 1, name: "Resorts of Sundarbans" },
     { id: 2, name: "Cox's Bazar" },

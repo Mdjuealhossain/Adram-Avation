@@ -7,7 +7,7 @@ import { useForm, Controller } from "react-hook-form";
 import FilterCheckboxGroup from "@/components/FilterCheckboxGroup";
 import Button from "@/components/Button";
 
-const FilterTourLists = () => {
+const FilterHotelLists = () => {
     const [selectedIds, setSelectIds] = useState([]);
     const [selectedTagsIds, setSelectTagsIds] = useState([]);
 
@@ -53,13 +53,12 @@ const FilterTourLists = () => {
         <>
             <div className=" bg-white  ">
                 <div className="border-b border-divider_2">
-                    <p className="text-subtitle1 font-semibold text-info_main p-4 hidden lg:block">Destination: 1 place found</p>
-
-                    <p className="text-subtitle1 font-semibold text-info_main p-4">Filter By</p>
+                    <p className="text-subtitle1 font-semibold text-info_main p-4">Filters</p>
                 </div>
                 <form className=" p-4 relative">
+                    <FilterCheckboxGroup title="Popular Filters" options={filterOptions} selectedFilters={selectedIds} onSelect={setSelectIds} />
                     {/* Price Range Filter */}
-                    <div className="border-b border-divider_2 ">
+                    <div className="border-b border-divider_2 py-4">
                         <p className="text-subtitle1 font-semibold text-info_main mb-2  pb-1">Price Range</p>
                         <Controller
                             className={""}
@@ -104,14 +103,14 @@ const FilterTourLists = () => {
                                 />
                             )}
                         />
-                        <div className="flex items-center justify-between text-info_main font-serif uppercase py-4">
+                        <div className="flex items-center justify-between text-info_main font-serif uppercase pt-4">
                             <p className="font-poppins">{`BDT ${prize_range.min}`}</p>
                             <p className="font-poppins">{`BDT ${prize_range.max ? prize_range.max : prize_range.min}`}</p>
                         </div>
                     </div>
 
                     {/* Duration Filter */}
-                    <div className=" py-4 border-b border-divider_2">
+                    <div className="py-4 border-b border-r-divider_2">
                         <FilterCheckboxGroup title="Duration" options={filterOptions} selectedFilters={selectedIds} onSelect={setSelectIds} />
                     </div>
                     {/* Time Selection */}
@@ -142,14 +141,15 @@ const FilterTourLists = () => {
     );
 };
 
-export default FilterTourLists;
+export default FilterHotelLists;
 
 // Filter options for the duration
 const filterOptions = [
-    { id: "1", isChecked: true, label: "Less than 6 hours" },
-    { id: "2", isChecked: false, label: "6 - 12 hours" },
-    { id: "3", isChecked: false, label: "12 - 24 hours" },
-    { id: "4", isChecked: false, label: "24+ hours" },
+    { id: "1", isChecked: true, label: "3 Star" },
+    { id: "2", isChecked: false, label: "5 Star" },
+    { id: "3", isChecked: false, label: "Hotel" },
+    { id: "4", isChecked: false, label: "Breackfast" },
+    { id: "5", isChecked: true, label: "2 Star" },
 ];
 
 // Filter tags for the tags

@@ -1,29 +1,21 @@
 "use client";
 import Card from "@/components/Card";
 import Offer from "@/components/Offer";
+import SearchSelect from "@/components/SearchSelect";
 import React, { useState } from "react";
 
-const TourLists = () => {
-    const [selectedOptions, setSelectedOptions] = useState([]);
-    const handleSelect = (option) => {
-        if (selectedOptions.includes(option.id)) {
-            // If already selected, remove it from the array
-            setSelectedOptions(selectedOptions.filter((id) => id !== option.id));
-        } else {
-            // If not selected, add it to the array
-            setSelectedOptions([...selectedOptions, option.id]);
-        }
-    };
+const HotelLists = () => {
+    const options = ["Popularity", "Price", "Rating", "Newest"];
+    const [selectedOption, setSelectedOption] = useState(options[0]); // Default to the first option
 
-    console.log("selectedOptions", selectedOptions);
+    console.log("selectedOption", selectedOption);
 
     return (
         <div>
-            <div>
-                <div className="flex gap-3 mb-3 overflow-x-auto w-full justify-between " style={{ scrollbarWidth: "none" }}>
-                    {options.map((option) => (
-                        <Offer key={option.id} {...option} onSelect={() => handleSelect(option)} className={`${selectedOptions.includes(option.id) ? "bg-primary_light " : "bg-white "}`} />
-                    ))}
+            <div className=" mb-4 flex items-center justify-between">
+                <p className=" text-subtitle1 font-semibold text-secondary">64 properties found</p>
+                <div className=" w-48">
+                    <SearchSelect options={options} select={selectedOption} onSelect={setSelectedOption} />
                 </div>
             </div>
             <div className=" flex flex-col gap-3">
@@ -35,14 +27,7 @@ const TourLists = () => {
     );
 };
 
-export default TourLists;
-const options = [
-    { id: 1, label: "Attractions & Shows", icon: "/assets/images/tour/attractions.png" },
-    { id: 2, label: "Activities & Experiences", icon: "/assets/images/tour/attractions.png" },
-    { id: 3, label: "Sightseeing & Day-Tours", icon: "/assets/images/tour/attractions.png" },
-    { id: 4, label: "Day-Out Packages", icon: "/assets/images/tour/attractions.png" },
-    { id: 5, label: "Adventure", icon: "/assets/images/tour/attractions.png" },
-];
+export default HotelLists;
 
 const cardsData = [
     {

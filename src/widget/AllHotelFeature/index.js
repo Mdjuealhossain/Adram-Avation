@@ -1,15 +1,13 @@
 import React from "react";
-import FilterTourLists from "../FilterTourLists";
-import TourLists from "../TourLists";
-const Drawer = dynamic(() => import("react-modern-drawer"), { ssr: false });
+
 import "react-modern-drawer/dist/index.css";
 import useModal from "@/hooks/useModal";
-import dynamic from "next/dynamic";
 import Button from "@/components/Button";
-import { IoClose } from "react-icons/io5";
 import FilteredDrawer from "@/components/FilteredDrawer";
+import FilterHotelLists from "../FilterHotelLists";
+import HotelLists from "../HotelLists";
 
-const AllTourFeature = () => {
+const AllHotelFeature = () => {
     const { isOpen, openModal, closeModal } = useModal();
 
     return (
@@ -21,17 +19,20 @@ const AllTourFeature = () => {
             </div>
             <div className=" lg:grid lg:grid-cols-4 gap-6">
                 <div className=" hidden lg:block">
-                    <FilterTourLists />
+                    <div className=" px-4 flex items-center justify-center mb-4 py-8 bg-primary_light/60 rounded-md">
+                        <Button className={" bg-info_main text-white"}>View Hotels in Map</Button>
+                    </div>
+                    <FilterHotelLists />
                 </div>
                 <div className=" md:col-span-3">
-                    <TourLists />
+                    <HotelLists />
                 </div>
             </div>
             <FilteredDrawer isOpen={isOpen} close={closeModal} title="Destination: 1 place found">
-                <FilterTourLists />
+                <FilterHotelLists />
             </FilteredDrawer>
         </>
     );
 };
 
-export default AllTourFeature;
+export default AllHotelFeature;

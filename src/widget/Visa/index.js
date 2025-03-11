@@ -1,7 +1,7 @@
 import SelectWithSearch from "@/components/Select";
 import React, { useState } from "react";
 
-const Visa = () => {
+const VisaService = () => {
     const [selected, setSelected] = useState(visaLocations[0]); // Default selection for "From"
 
     return (
@@ -16,7 +16,7 @@ const Visa = () => {
     );
 };
 
-export default Visa;
+export default VisaService;
 const visaLocations = [
     { id: 1, name: "Sri Lanka" },
     { id: 2, name: "Saudi Arabia" },

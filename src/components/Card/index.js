@@ -16,23 +16,23 @@ const Card = ({ image, title, location, duration, groupSize, description, price,
                     <div className="mb-[10px]">
                         <h4 className="text-H3 font-semibold text-info_main mb-1">{title}</h4>
                         <div className="flex items-center gap-2">
-                            <MdLocationPin size={14} className=" h-[14px] w-[14px]" />
+                            <MdLocationPin size={16} className=" text-secondary/50 shrink-0" />
                             <p className="text-body2 font-light text-info_main">{location}</p>
                         </div>
                     </div>
                     <div className="">
                         <div className="flex gap-x-3 mb-1">
                             <div className="flex  gap-2">
-                                <MdOutlineWatchLater size={14} className=" h-[14px] w-[14px]" />
+                                <MdOutlineWatchLater size={16} className=" text-secondary/50 shrink-0" />
                                 <p className="text-body2 font-light text-info_main">{duration}</p>
                             </div>
                             <div className="flex  gap-2">
-                                <MdGroups size={14} className=" h-[14px] w-[14px]" />
+                                <MdGroups size={16} className=" text-secondary/50 shrink-0" />
                                 <p className="text-body2 font-light text-info_main">{groupSize}</p>
                             </div>
                         </div>
                         <div className="flex  gap-2">
-                            <LuFileChartColumnIncreasing size={14} className=" h-[14px] w-[14px]" />
+                            <LuFileChartColumnIncreasing size={16} className=" text-secondary/50 shrink-0" />
                             <p className="text-body2 font-light text-info_main lin">{description}</p>
                         </div>
                     </div>

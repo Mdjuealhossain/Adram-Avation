@@ -5,7 +5,7 @@ import { BsCheckSquareFill } from "react-icons/bs";
 import DatePicker from "../DatePicker";
 import TravelerSelect from "@/components/TravelerSelect";
 
-const Hotel = () => {
+const HotelSerice = ({ isSearchFor = false }) => {
     const [selected, setSelected] = useState(topDestinations[0]); // Default selection for "From"
 
     const getNextDay = (date) => {
@@ -50,8 +50,8 @@ const Hotel = () => {
     ];
 
     return (
-        <div>
-            <div className=" grid md:grid-cols-5 grid-cols-1 gap-[10px]">
+        <div className=" w-full">
+            <div className=" grid md:grid-cols-5 grid-cols-1 gap-[10px] w-full ">
                 <div className=" md:col-span-2">
                     <SelectWithSearch options={topDestinations} menuClassName={"md:w-[500px]"} options2={topProperties} isDouble label={"City/Hotel/Resort/Area"} selectedItem={selected} onSelect={setSelected} />
                 </div>
@@ -60,21 +60,23 @@ const Hotel = () => {
                 </div>
                 <TravelerSelect onSelect={handlePassenger} label={"Rooms & Guests"} service="hotel" menuClassName="md:!w-[400px] !right-0" maxAdult={100} maxChildren={4} />
             </div>
-            <div className="flex items-center space-x-4 my-3">
-                <span className=" text-body1 font-semibold text-info_main">Search for</span>
-                {filterOptions.map(({ name, label }) => (
-                    <label key={name} className={`inline-flex items-center cursor-pointer`}>
-                        <input type="checkbox" className={`form-checkbox hidden h-5 w-5  rounded border-gray-300 focus:ring-blue-500`} checked={filters[name]} onChange={() => handleFilterChange(name)} />
-                        <div className=" h-5 w-5 ">{filters[name] ? <BsCheckSquareFill size={18} className="shadow-md text-info_main" /> : <div className=" h-[18px] w-[18px] border border-black/50 rounded-[3px] shadow-md"></div>}</div>
-                        <span className="ml-1 text-body1 text-gray_400">{label}</span>
-                    </label>
-                ))}
-            </div>
+            {isSearchFor && (
+                <div className="flex items-center space-x-4 my-3">
+                    <span className=" text-body1 font-semibold text-info_main">Search for</span>
+                    {filterOptions.map(({ name, label }) => (
+                        <label key={name} className={`inline-flex items-center cursor-pointer`}>
+                            <input type="checkbox" className={`form-checkbox hidden h-5 w-5  rounded border-gray-300 focus:ring-blue-500`} checked={filters[name]} onChange={() => handleFilterChange(name)} />
+                            <div className=" h-5 w-5 ">{filters[name] ? <BsCheckSquareFill size={18} className="shadow-md text-info_main" /> : <div className=" h-[18px] w-[18px] border border-black/50 rounded-[3px] shadow-md"></div>}</div>
+                            <span className="ml-1 text-body1 text-gray_400">{label}</span>
+                        </label>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };
 
-export default Hotel;
+export default HotelSerice;
 const airports = [
     { id: 1, name: "Dhaka, Bangladesh", fullName: "Hazrat Shahjalal International Airport" },
     { id: 2, name: "Cox's Bazar, Bangladesh", fullName: "Cox's Bazar Airport" },

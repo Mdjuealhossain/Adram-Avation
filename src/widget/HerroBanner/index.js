@@ -5,10 +5,10 @@ import React, { useState } from "react";
 import { FaHotel, FaPlane } from "react-icons/fa";
 import { MdTour } from "react-icons/md";
 import { FaCcVisa } from "react-icons/fa6";
-import Flight from "../Flight";
-import Hotel from "../Hotel";
-import Tour from "../Tour";
-import Visa from "../Visa";
+import FlightService from "../Flight";
+import HotelSerice from "../Hotel";
+import TourService from "../Tour";
+import VisaService from "../Visa";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 
@@ -79,10 +79,10 @@ const HerroBanner = () => {
                     ))}
                 </div>
                 <div className=" md:px-[30px] md:pt-[50px] md:pb-10 pt-10 px-4 pb-6 bg-white relative shadow-service rounded-[20px]">
-                    {activeTabIndex == "1" && <Flight />}
-                    {activeTabIndex == "2" && <Hotel />}
-                    {activeTabIndex == "3" && <Tour />}
-                    {activeTabIndex == "4" && <Visa />}
+                    {activeTabIndex == "1" && <FlightService />}
+                    {activeTabIndex == "2" && <HotelSerice isSearchFor={true} />}
+                    {activeTabIndex == "3" && <TourService />}
+                    {activeTabIndex == "4" && <VisaService />}
                     <form className=" relative">
                         <Button onClick={onSubmite} size="large" className={" bg-warning_main text-info_main !text-H4 font-semibold absolute top-3 left-1/2 -translate-x-1/2"}>
                             search

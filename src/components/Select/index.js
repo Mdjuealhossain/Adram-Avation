@@ -107,7 +107,7 @@ const SelectWithSearch = ({ label, onSelect = () => {}, options = [], options2 =
                                 filteredItems.map((item) => (
                                     <div key={item.id} className="py-2 px-4 hover:bg-blue-100 cursor-pointer flex items-center justify-between" onClick={() => handleSelect(item)}>
                                         <div className=" flex items-center gap-2">
-                                            <MdLocationPin size={20} className=" text-black/50" />
+                                            <MdLocationPin size={20} className=" text-black/50 shrink-0" />
                                             <div className="text-body1 text-info_main  font-light">{item.name}</div>
                                         </div>
                                     </div>
