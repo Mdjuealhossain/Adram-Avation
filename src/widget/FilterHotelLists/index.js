@@ -132,7 +132,9 @@ const FilterHotelLists = () => {
                     <div className="py-4 border-b border-r-divider_2">
                         <FilterCheckboxGroup title="user rattings" options={userRatings} selectedFilters={selectedIds} onSelect={setSelectIds} />
                     </div>
-                    <StarRating selected={selectedStars} onSelect={setSelectedStars} options={starRatings} />
+                    <div className="py-4 border-b border-r-divider_2">
+                        <StarRating selected={selectedStars} onSelect={setSelectedStars} options={starRatings} />
+                    </div>
                     {/* Time Selection */}
                     {/* <div className="py-4 border-b border-divider_2">
                         <p className="text-subtitle1 font-semibold text-info_main pb-1">Time</p>
@@ -146,13 +148,13 @@ const FilterHotelLists = () => {
                         </div>
                     </div> */}
 
-                    <div className="py-4">
+                    <div className="py-4 border-b border-r-divider_2">
                         <FilterCheckboxGroup options={filterTags} selectedFilters={selectedTagsIds} onSelect={setSelectTagsIds} title="Accommodation Type" />
                     </div>
-                    <div className="py-4">
+                    <div className="py-4 border-b border-r-divider_2">
                         <FilterCheckboxGroup options={filterTags} selectedFilters={selectedTagsIds} onSelect={setSelectTagsIds} title="Amenities" />
                     </div>
-                    <div className="py-4">
+                    <div className="py-4 border-b border-r-divider_2">
                         <FilterCheckboxGroup options={filterTags} selectedFilters={selectedTagsIds} onSelect={setSelectTagsIds} title="Neighbourhood" />
                     </div>
                     {/* Reset Button */}

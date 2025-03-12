@@ -14,7 +14,7 @@ const StarRating = ({ selected, onSelect, options }) => {
 
     return (
         <div className="flex flex-col items-start">
-            <h2 className="text-lg font-bold mb-2">Star Rating</h2>
+            <h2 className="text-subtitle1 font-semibold text-info_main mb-2  pb-1">Star Rating</h2>
             <div className="flex gap-2 flex-wrap">
                 {options.map((star) => (
                     <div key={star.id} onClick={() => handleClick(star.id)} className={`cursor-pointer  flex items-center px-[10px] py-[5px] text-body2 gap-1 border  rounded-md ${selected.includes(star.id) ? " bg-info_main text-white border-info_main" : " text-secondary border-secondary"}`}>
