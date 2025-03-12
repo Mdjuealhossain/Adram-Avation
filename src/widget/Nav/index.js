@@ -66,7 +66,7 @@ const Nav = () => {
 
     return (
         <>
-            <div className={`fixed left-0 top-0 right-0 z-20 ${isHomePage && showContent ? " bg-white" : !isHomePage ? " bg-white" : " bg-transparent"}`}>
+            <div className={`fixed left-0 top-0 right-0 z-20 ${isHomePage && showContent ? " bg-white shadow-nav" : !isHomePage ? " bg-white shadow-nav" : " bg-transparent"}`}>
                 <Container>
                     <nav className="flex items-center justify-between md:h-20 h-16">
                         {/* Logo */}
@@ -74,14 +74,14 @@ const Nav = () => {
                             <Image src="/assets/logo.jpg" alt="logo" height={40} width={130} className="h-auto w-auto max-h-full max-w-full" />
                         </Link>
 
-                        <div className={` md:px-[60px] px-10 rounded-lg z-10 flex items-center transition-opacity duration-300 ${showContent && isHomePage ? "opacity-100" : !isHomePage ? "opacity-100" : "opacity-0"}`}>
+                        <div className={` md:px-[60px] px-10 rounded-lg z-10 hidden md:flex items-center transition-opacity duration-300 ${showContent && isHomePage ? "opacity-100" : !isHomePage ? "opacity-100" : "opacity-0"}`}>
                             {tabs.map((tab) => (
-                                <Tab className={" !py-7"} key={tab.id} isActive={activeTabIndex === tab.id} onClick={() => handleTab(tab)} label={tab.label} icon={tab.icon} />
+                                <Tab className={`!py-7 ${!isHomePage && " !border-transparent !text-secondary"}`} key={tab.id} isActive={activeTabIndex === tab.id} onClick={() => handleTab(tab)} label={tab.label} icon={tab.icon} />
                             ))}
                         </div>
 
                         {/* Right Section */}
-                        <div className="relative flex items-center gap-8 w-[107.09px]">
+                        <div className="relative flex items-center gap-8 lg:w-[107.09px]">
                             {/* Profile Dropdown Trigger */}
                             <div className="flex items-center gap-1 cursor-pointer" onClick={() => setIsOpen(true)}>
                                 <IoPersonCircle className="text-info_main h-8 w-8 md:h-10 md:w-10" />

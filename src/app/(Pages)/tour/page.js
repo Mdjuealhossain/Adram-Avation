@@ -1,18 +1,17 @@
 "use client";
-import Button from "@/components/Button";
-import Container from "@/components/Container";
-import SelectWithSearch from "@/components/Select";
+import { useState } from "react";
+
 import AllTourFeature from "@/widget/AllTourFeature";
-import FilterTourLists from "@/widget/FilterTourLists";
-import TourLists from "@/widget/TourLists";
-import React, { useState } from "react";
+import SelectWithSearch from "@/components/Select";
+import Container from "@/components/Container";
+import Button from "@/components/Button";
 
 const Tour = () => {
-    const [selected, setSelected] = useState(tourLocations[0]); // Default selection for "From"
+    const [selected, setSelected] = useState(tourLocations[0]);
 
     return (
         <div>
-            <section className=" bg-white pt-16 md:pt-20 mb-4 pb-4">
+            <section className=" bg-white pt-20 md:pt-24 mb-4 pb-4">
                 <Container>
                     <div className=" flex flex-col lg:flex-row items-center gap-4">
                         <SelectWithSearch options={tourLocations} location={true} label={"Location/ Tour"} menuClassName={" w-full"} selectedItem={selected} onSelect={setSelected} />

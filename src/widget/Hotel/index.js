@@ -61,7 +61,7 @@ const HotelSerice = ({ isSearchFor = false }) => {
                 <TravelerSelect onSelect={handlePassenger} label={"Rooms & Guests"} service="hotel" menuClassName="md:!w-[400px] !right-0" maxAdult={100} maxChildren={4} />
             </div>
             {isSearchFor && (
-                <div className="flex items-center space-x-4 my-3">
+                <div className="flex items-center space-x-4 my-3 flex-wrap">
                     <span className=" text-body1 font-semibold text-info_main">Search for</span>
                     {filterOptions.map(({ name, label }) => (
                         <label key={name} className={`inline-flex items-center cursor-pointer`}>

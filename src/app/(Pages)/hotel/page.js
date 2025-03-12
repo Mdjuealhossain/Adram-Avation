@@ -9,7 +9,7 @@ import HotelSerice from "@/widget/Hotel";
 const Hotel = () => {
     return (
         <div>
-            <section className=" bg-white pt-16 md:pt-20 mb-4 pb-4">
+            <section className=" bg-white pt-20 md:pt-24 mb-4 pb-4">
                 <Container>
                     <div className=" flex flex-col lg:flex-row items-center gap-4">
                         <HotelSerice isSearchFor={false} />
