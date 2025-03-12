@@ -16,11 +16,15 @@ import { Tab } from "@/components/Tabs";
 
 const Nav = () => {
     const [showContent, setShowContent] = useState(false);
+    const [activeTabIndex, setActiveTabIndex] = useState("flight");
     const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
-    const activeTabIndex = searchParams.get("search") || "flight"; // Default to "flight"
+    useEffect(() => {
+        const searchParam = searchParams.get("search") || "flight";
+        setActiveTabIndex(searchParam);
+    }, [searchParams]);
     const [isHomePage, setIsHomePage] = useState(false);
 
     useEffect(() => {

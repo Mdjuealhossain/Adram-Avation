@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Container from "@/components/Container";
 import { Tab } from "@/components/Tabs";
@@ -16,7 +16,13 @@ import VisaService from "../Visa";
 const HeroBanner = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const activeTabIndex = searchParams.get("search") || "flight"; // Default to "flight"
+    const [activeTabIndex, setActiveTabIndex] = useState("flight");
+
+    useEffect(() => {
+        const searchParam = searchParams.get("search") || "flight";
+        setActiveTabIndex(searchParam);
+    }, [searchParams]);
+    // const activeTabIndex = searchParams.get("search") || "flight"; // Default to "flight"
 
     const tabs = [
         { id: "flight", label: "Flight", icon: <FaPlane /> },

@@ -1,11 +1,14 @@
+"use client";
 import HerroBanner from "@/widget/HerroBanner";
-import React from "react";
+import { Suspense } from "react";
 
 const Home = () => {
     return (
         <div>
             <section>
-                <HerroBanner />
+                <Suspense fallback={<div>Loading...</div>}>
+                    <HerroBanner />
+                </Suspense>
             </section>
             <div className=" h-screen"></div>
         </div>

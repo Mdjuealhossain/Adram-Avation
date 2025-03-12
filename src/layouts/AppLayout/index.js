@@ -1,10 +1,13 @@
+import React, { Suspense } from "react";
+
 import Nav from "@/widget/Nav";
-import React from "react";
 
 const AppLayout = ({ children }) => {
     return (
         <div className=" relative">
-            <Nav />
+            <Suspense fallback={<div>Loading...</div>}>
+                <Nav />
+            </Suspense>
             <div>{children}</div>
         </div>
     );
