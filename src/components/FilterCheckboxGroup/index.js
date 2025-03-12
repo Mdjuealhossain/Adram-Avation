@@ -21,7 +21,7 @@ const FilterCheckboxGroup = ({ title, options, selectedFilters, onSelect }) => {
 
     return (
         <div className=" ">
-            <p className="text-subtitle1 font-semibold text-info_main pb-1">{title}</p>
+            <p className="text-subtitle1 font-semibold text-info_main pb-1 capitalize">{title}</p>
             <div className="flex flex-col gap-[10px]">
                 {visibleOptions.map(({ id, label }) => (
                     <label key={id} className="inline-flex items-center cursor-pointer">

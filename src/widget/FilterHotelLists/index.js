@@ -6,10 +6,15 @@ import { useForm, Controller } from "react-hook-form";
 
 import FilterCheckboxGroup from "@/components/FilterCheckboxGroup";
 import Button from "@/components/Button";
+import { IoClose, IoSearch } from "react-icons/io5";
+import StarRating from "@/components/StarRatimg";
 
 const FilterHotelLists = () => {
     const [selectedIds, setSelectIds] = useState([]);
     const [selectedTagsIds, setSelectTagsIds] = useState([]);
+    const [selectedStars, setSelectedStars] = useState([]);
+
+    const [search, setSearch] = useState("");
 
     const { control, watch, reset, setValue } = useForm({
         defaultValues: {
@@ -57,6 +62,20 @@ const FilterHotelLists = () => {
                 </div>
                 <form className=" p-4 relative">
                     <FilterCheckboxGroup title="Popular Filters" options={filterOptions} selectedFilters={selectedIds} onSelect={setSelectIds} />
+                    <div className="flex flex-col pb-4 border-b border-divider_2">
+                        <label className="text-subtitle1 font-semibold text-info_main mb-2  pb-1">Property Name</label>
+                        <div className="flex items-center border border-info_main rounded-md  overflow-hidden">
+                            <input type="text" placeholder="Property Name" value={search} onChange={(e) => setSearch(e.target.value)} className="flex-1 px-3 py-2 w-8 outline-none text-body1 text-secondary  placeholder-gray-400" />
+
+                            <button onClick={() => setSearch("")} type="button" className="p-2">
+                                <IoClose className="h-4 w-4 text-gray-400" />
+                            </button>
+
+                            <button type="button" className="p-2  border-l">
+                                <IoSearch className="h-4 w-4 text-gray-400" />
+                            </button>
+                        </div>
+                    </div>
                     {/* Price Range Filter */}
                     <div className="border-b border-divider_2 py-4">
                         <p className="text-subtitle1 font-semibold text-info_main mb-2  pb-1">Price Range</p>
@@ -111,10 +130,11 @@ const FilterHotelLists = () => {
 
                     {/* Duration Filter */}
                     <div className="py-4 border-b border-r-divider_2">
-                        <FilterCheckboxGroup title="Duration" options={filterOptions} selectedFilters={selectedIds} onSelect={setSelectIds} />
+                        <FilterCheckboxGroup title="user rattings" options={userRatings} selectedFilters={selectedIds} onSelect={setSelectIds} />
                     </div>
+                    <StarRating selected={selectedStars} onSelect={setSelectedStars} options={starRatings} />
                     {/* Time Selection */}
-                    <div className="py-4 border-b border-divider_2">
+                    {/* <div className="py-4 border-b border-divider_2">
                         <p className="text-subtitle1 font-semibold text-info_main pb-1">Time</p>
                         <div className=" grid grid-cols-4 border rounded">
                             {times.map((time) => (
@@ -124,14 +144,20 @@ const FilterHotelLists = () => {
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="py-4">
-                        <FilterCheckboxGroup options={filterTags} selectedFilters={selectedTagsIds} onSelect={setSelectTagsIds} title="Tags" />
+                        <FilterCheckboxGroup options={filterTags} selectedFilters={selectedTagsIds} onSelect={setSelectTagsIds} title="Accommodation Type" />
+                    </div>
+                    <div className="py-4">
+                        <FilterCheckboxGroup options={filterTags} selectedFilters={selectedTagsIds} onSelect={setSelectTagsIds} title="Amenities" />
+                    </div>
+                    <div className="py-4">
+                        <FilterCheckboxGroup options={filterTags} selectedFilters={selectedTagsIds} onSelect={setSelectTagsIds} title="Neighbourhood" />
                     </div>
                     {/* Reset Button */}
-                    <div className="py-4 fixed md:relative top-[86%]  w-full flex items-center justify-center ">
-                        <Button type="button" className="bg-warning_main text-info_main font-semibold md:w-full" onClick={handleReset}>
+                    <div className="py-4 fixed lg:relative top-[86%] md:top-[83%]  w-full flex items-center justify-center ">
+                        <Button type="button" className="bg-warning_main text-info_main font-semibold w-full" onClick={handleReset}>
                             Reset Filter
                         </Button>
                     </div>
@@ -161,4 +187,22 @@ const filterTags = [
     { id: "5", isChecked: false, label: "Family Packages" },
     { id: "6", isChecked: false, label: "Long Drive" },
     { id: "7", isChecked: false, label: "Nature" },
+];
+
+const userRatings = [
+    { id: "1", isChecked: false, label: "1  Terrible" },
+    { id: "2", isChecked: false, label: "1.5  Poor" },
+    { id: "3", isChecked: false, label: "2  Poor" },
+    { id: "4", isChecked: false, label: "2.5  Okay" },
+    { id: "5", isChecked: false, label: "3  Okay" },
+    { id: "6", isChecked: false, label: "3.5  Good" },
+    { id: "7", isChecked: false, label: "4  Good" },
+    { id: "8", isChecked: false, label: "4.5  Excellent" },
+];
+const starRatings = [
+    { id: "1", label: "1" },
+    { id: "2", label: "2" },
+    { id: "3", label: "3" },
+    { id: "4", label: "4" },
+    { id: "5", label: "5" },
 ];

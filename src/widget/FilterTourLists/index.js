@@ -131,8 +131,8 @@ const FilterTourLists = () => {
                         <FilterCheckboxGroup options={filterTags} selectedFilters={selectedTagsIds} onSelect={setSelectTagsIds} title="Tags" />
                     </div>
                     {/* Reset Button */}
-                    <div className="py-4 fixed md:relative top-[86%]  w-full flex items-center justify-center ">
-                        <Button type="button" className="bg-warning_main text-info_main font-semibold md:w-full" onClick={handleReset}>
+                    <div className="py-4 fixed lg:relative top-[86%] md:top-[83%]  w-full flex items-center justify-center ">
+                        <Button type="button" className="bg-warning_main text-info_main font-semibold w-full" onClick={handleReset}>
                             Reset Filter
                         </Button>
                     </div>

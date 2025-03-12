@@ -14,7 +14,7 @@ const Card = ({ image, title, location, duration, groupSize, description, price,
                 </div>
                 <div className="flex flex-col justify-between ">
                     <div className="mb-[10px]">
-                        <h4 className="text-H3 font-semibold text-info_main mb-1">{title}</h4>
+                        <h4 className="text-H3 font-semibold text-info_main mb-1 line-clamp-2">{title}</h4>
                         <div className="flex items-center gap-2">
                             <MdLocationPin size={16} className=" text-secondary/50 shrink-0" />
                             <p className="text-body2 font-light text-info_main">{location}</p>
@@ -38,7 +38,7 @@ const Card = ({ image, title, location, duration, groupSize, description, price,
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col items-end gap-px md:w-32 w-full">
+            <div className="flex flex-col items-end gap-px md:w-[180px] w-full">
                 <p className="text-body2 font-light text-success_light capitalize">starting from</p>
                 <h3 className="text-H3 font-semibold text-info_main">
                     <span className="text-body2 uppercase">bdt</span> {price}
