@@ -26,8 +26,8 @@ export const Tabs = ({ children }) => {
     );
 };
 
-export const Tab = ({ label, isActive, onClick, icon }) => (
-    <button className={`flex flex-col md:flex-row justify-center md:justify-start items-center gap-1 md:gap-3 md:p-5 p-3 font-semibold focus:outline-none border-b-2 ${isActive ? " border-warning_main text-info_main" : "text-secondary border-transparent"}`} onClick={onClick}>
+export const Tab = ({ label, isActive, onClick, icon, className }) => (
+    <button className={`flex flex-col md:flex-row ${className} justify-center md:justify-start items-center gap-1 md:gap-3 md:p-5 p-3 font-semibold focus:outline-none border-b-2 ${isActive ? " border-warning_main text-info_main" : "text-secondary border-transparent"}`} onClick={onClick}>
         <span>{icon}</span>
         <span>{label}</span>
     </button>

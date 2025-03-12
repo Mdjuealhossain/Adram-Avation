@@ -7,6 +7,7 @@ const Home = () => {
             <section>
                 <HerroBanner />
             </section>
+            <div className=" h-screen"></div>
         </div>
     );
 };

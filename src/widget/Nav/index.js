@@ -1,24 +1,72 @@
 "use client";
-import { useState } from "react";
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import { IoPersonCircle } from "react-icons/io5";
-import { MdPerson } from "react-icons/md";
-import { RiShieldFlashFill } from "react-icons/ri";
-import { FaTags, FaHeart, FaSignOutAlt } from "react-icons/fa";
-import Container from "@/components/Container";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation"; // Using usePathname from Next.js
+import { FaTags, FaHeart, FaSignOutAlt, FaPlane, FaHotel } from "react-icons/fa";
+import { useRouter, useSearchParams } from "next/navigation";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { FaCcVisa } from "react-icons/fa6";
+import { IoPersonCircle } from "react-icons/io5";
+import { MdPerson, MdTour } from "react-icons/md";
+import { RiShieldFlashFill } from "react-icons/ri";
 
-const Drawer = dynamic(() => import("react-modern-drawer"), { ssr: false });
+import Container from "@/components/Container";
+import { Tab } from "@/components/Tabs";
 
 const Nav = () => {
+    const [showContent, setShowContent] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const activeTabIndex = searchParams.get("search") || "flight"; // Default to "flight"
+    const [isHomePage, setIsHomePage] = useState(false);
+
+    useEffect(() => {
+        // Check if pathname is "/"
+        const isHome = pathname === "/";
+        setIsHomePage(isHome);
+    }, [pathname]);
+
+    const tabs = [
+        { id: "flight", label: "Flight", icon: <FaPlane /> },
+        { id: "hotel", label: "Hotel", icon: <FaHotel /> },
+        { id: "tour", label: "Tour", icon: <MdTour /> },
+        { id: "visa", label: "Visa", icon: <FaCcVisa /> },
+    ];
+
+    const handleTab = useCallback(
+        (tab) => {
+            // Update the URL with the selected tab
+            router.push(`/?search=${tab.id}`, { shallow: true });
+        },
+        [router]
+    );
+
     const icon = isOpen ? <IoIosArrowUp size={14} /> : <IoIosArrowDown size={14} />;
+
+    const handleScroll = () => {
+        const scrollPosition = window.scrollY; // Scroll position in pixels
+        if (scrollPosition > 50) {
+            setShowContent(true); // Show content if scroll is greater than 100px
+        } else {
+            setShowContent(false); // Hide content if scroll is less than 100px
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+
+        // Clean up the event listener on component unmount
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     return (
         <>
-            <div className="fixed left-0 top-0 right-0 z-20 bg-white">
+            <div className={`fixed left-0 top-0 right-0 z-20 ${isHomePage && showContent ? " bg-white" : !isHomePage ? " bg-white" : " bg-transparent"}`}>
                 <Container>
                     <nav className="flex items-center justify-between md:h-20 h-16">
                         {/* Logo */}
@@ -26,8 +74,14 @@ const Nav = () => {
                             <Image src="/assets/logo.jpg" alt="logo" height={40} width={130} className="h-auto w-auto max-h-full max-w-full" />
                         </Link>
 
+                        <div className={` md:px-[60px] px-10 rounded-lg z-10 flex items-center transition-opacity duration-300 ${showContent && isHomePage ? "opacity-100" : !isHomePage ? "opacity-100" : "opacity-0"}`}>
+                            {tabs.map((tab) => (
+                                <Tab className={" !py-7"} key={tab.id} isActive={activeTabIndex === tab.id} onClick={() => handleTab(tab)} label={tab.label} icon={tab.icon} />
+                            ))}
+                        </div>
+
                         {/* Right Section */}
-                        <div className="relative flex items-center gap-8">
+                        <div className="relative flex items-center gap-8 w-[107.09px]">
                             {/* Profile Dropdown Trigger */}
                             <div className="flex items-center gap-1 cursor-pointer" onClick={() => setIsOpen(true)}>
                                 <IoPersonCircle className="text-info_main h-8 w-8 md:h-10 md:w-10" />
