@@ -1,13 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
-import { MdOutlineLightMode } from "react-icons/md";
+import { useState } from "react";
 import { Range } from "react-range";
+import { IoClose, IoSearch } from "react-icons/io5";
 import { useForm, Controller } from "react-hook-form";
 
 import FilterCheckboxGroup from "@/components/FilterCheckboxGroup";
-import Button from "@/components/Button";
-import { IoClose, IoSearch } from "react-icons/io5";
 import StarRating from "@/components/StarRatimg";
+import Button from "@/components/Button";
 
 const FilterHotelLists = () => {
     const [selectedIds, setSelectIds] = useState([]);
@@ -16,7 +15,7 @@ const FilterHotelLists = () => {
 
     const [search, setSearch] = useState("");
 
-    const { control, watch, reset, setValue } = useForm({
+    const { control, reset } = useForm({
         defaultValues: {
             priceRange: [1],
             isTime: [],
@@ -25,17 +24,6 @@ const FilterHotelLists = () => {
     const prize_range = {
         min: 27000,
         max: 38000,
-    };
-
-    const isTime = watch("isTime");
-    // Handle Time Select
-    const handleTimeSelect = (timeId) => {
-        const currentTimes = watch("isTime");
-        const updatedTimes = currentTimes.includes(timeId)
-            ? currentTimes.filter((id) => id !== timeId) // Remove if already selected
-            : [...currentTimes, timeId]; // Add if not selected
-
-        setValue("isTime", updatedTimes);
     };
 
     const handleReset = () => {

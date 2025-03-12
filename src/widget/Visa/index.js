@@ -1,5 +1,7 @@
+"use client";
+import { useState } from "react";
+
 import SelectWithSearch from "@/components/Select";
-import React, { useState } from "react";
 
 const VisaService = () => {
     const [selected, setSelected] = useState(visaLocations[0]); // Default selection for "From"
