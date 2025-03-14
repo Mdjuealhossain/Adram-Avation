@@ -3,9 +3,10 @@ import React from "react";
 
 import FilteredDrawer from "@/components/FilteredDrawer";
 import FilterFlightLists from "../FilterFlightLists";
+import CountdownTimer from "../CountdownTimer";
 import Button from "@/components/Button";
+import FlightLists from "../FlightLists";
 import useModal from "@/hooks/useModal";
-import "react-modern-drawer/dist/index.css";
 
 const AllFlightFeature = () => {
     const { isOpen, openModal, closeModal } = useModal();
@@ -20,7 +21,12 @@ const AllFlightFeature = () => {
             <div className=" hidden lg:block">
                 <FilterFlightLists />
             </div>
-            <div className=" md:col-span-3">{/* <TourLists /> */}</div>
+            <div className=" grid grid-cols-4 mt-4">
+                <div className=" col-span-3">
+                    <FlightLists />
+                </div>
+                <CountdownTimer />
+            </div>
             <FilteredDrawer isOpen={isOpen} close={closeModal} title="Showing 12 Flight Results">
                 <FilterFlightLists isMobile />
             </FilteredDrawer>

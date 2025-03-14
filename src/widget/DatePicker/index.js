@@ -124,9 +124,7 @@ const DatePicker = ({ roundWay, setRoundWay, oneWay, setOneWay, multiCity, setMu
                         )}
                     </div>
                 ) : (
-                    <button className="text-body2 text-start whitespace-nowrap">
-                        Save more on return <br /> flight
-                    </button>
+                    <button className="text-body2 text-start line-clamp-2">Save more on return flight</button>
                 )}
             </div>
 

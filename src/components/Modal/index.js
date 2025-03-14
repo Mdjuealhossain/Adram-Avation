@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
 
-const Modal = ({ isOpen, onClose, title, children, width }) => {
+const Modal = ({ isOpen, onClose, title, children, width, isClose }) => {
     useEffect(() => {
         if (isOpen) {
             document.body.classList.add("overflow-hidden");
@@ -27,10 +27,12 @@ const Modal = ({ isOpen, onClose, title, children, width }) => {
                 }}
             >
                 <div className="relative mb-2">
-                    {title && <h5 className="text-H5 text-center font-bold whitespace-pre-wrap text-black">{title}</h5>}
-                    <div onClick={onClose} className="text-success_main border border-success_main rounded-sm hover:cursor-pointer absolute -top-10 right-[45%] md:top-0 md:right-0">
-                        <IoMdClose size={24} />
-                    </div>
+                    {title && <h5 className="text-H3 text-center font-bold whitespace-pre-wrap text-info_main">{title}</h5>}
+                    {isClose && (
+                        <div onClick={onClose} className={`text-success_main border border-success_main rounded-sm hover:cursor-pointer absolute -top-10 right-[45%] md:top-0 md:right-0`}>
+                            <IoMdClose size={24} />
+                        </div>
+                    )}
                 </div>
                 <div className="">{children}</div>
             </div>
