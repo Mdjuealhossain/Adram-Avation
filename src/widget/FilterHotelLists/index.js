@@ -7,6 +7,7 @@ import { useForm, Controller } from "react-hook-form";
 import FilterCheckboxGroup from "@/components/FilterCheckboxGroup";
 import StarRating from "@/components/StarRatimg";
 import Button from "@/components/Button";
+import PriceRangeFilter from "@/components/PrizeRange";
 
 const FilterHotelLists = () => {
     const [selectedIds, setSelectIds] = useState([]);
@@ -15,7 +16,7 @@ const FilterHotelLists = () => {
 
     const [search, setSearch] = useState("");
 
-    const { control, reset } = useForm({
+    const { control, reset, watch } = useForm({
         defaultValues: {
             priceRange: [1],
             isTime: [],
@@ -65,7 +66,11 @@ const FilterHotelLists = () => {
                         </div>
                     </div>
                     {/* Price Range Filter */}
-                    <div className="border-b border-divider_2 py-4">
+                    <div className="py-4 border-b border-r-divider_2">
+                        <PriceRangeFilter control={control} prize_range={prize_range} />
+                    </div>
+
+                    {/* <div className="border-b border-divider_2 py-4">
                         <p className="text-subtitle1 font-semibold text-info_main mb-2  pb-1">Price Range</p>
                         <Controller
                             className={""}
@@ -114,14 +119,14 @@ const FilterHotelLists = () => {
                             <p className="font-poppins">{`BDT ${prize_range.min}`}</p>
                             <p className="font-poppins">{`BDT ${prize_range.max ? prize_range.max : prize_range.min}`}</p>
                         </div>
-                    </div>
+                    </div> */}
 
                     {/* Duration Filter */}
                     <div className="py-4 border-b border-r-divider_2">
                         <FilterCheckboxGroup title="user rattings" options={userRatings} selectedFilters={selectedIds} onSelect={setSelectIds} />
                     </div>
                     <div className="py-4 border-b border-r-divider_2">
-                        <StarRating selected={selectedStars} onSelect={setSelectedStars} options={starRatings} />
+                        <StarRating selected={selectedStars} label={"Star Rating"} onSelect={setSelectedStars} options={starRatings} />
                     </div>
                     {/* Time Selection */}
                     {/* <div className="py-4 border-b border-divider_2">

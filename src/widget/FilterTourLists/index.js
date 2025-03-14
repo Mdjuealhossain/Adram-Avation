@@ -1,11 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
-import { MdOutlineLightMode } from "react-icons/md";
+import { MdOutlineBrightness7, MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { Range } from "react-range";
 import { useForm, Controller } from "react-hook-form";
 
 import FilterCheckboxGroup from "@/components/FilterCheckboxGroup";
 import Button from "@/components/Button";
+import TimeFilter from "@/components/TimeFilter";
 
 const FilterTourLists = () => {
     const [selectedIds, setSelectIds] = useState([]);
@@ -43,10 +44,10 @@ const FilterTourLists = () => {
     };
 
     const times = [
-        { id: "1", time: "00-06" },
-        { id: "2", time: "06-12" },
-        { id: "3", time: "12-18" },
-        { id: "4", time: "18-24" },
+        { id: "1", time: "00-06", icon: MdOutlineLightMode },
+        { id: "2", time: "06-12", icon: MdOutlineLightMode },
+        { id: "3", time: "12-18", icon: MdOutlineBrightness7 },
+        { id: "4", time: "18-24", icon: MdOutlineDarkMode },
     ];
 
     return (
@@ -115,7 +116,10 @@ const FilterTourLists = () => {
                         <FilterCheckboxGroup title="Duration" options={filterOptions} selectedFilters={selectedIds} onSelect={setSelectIds} />
                     </div>
                     {/* Time Selection */}
-                    <div className="py-4 border-b border-divider_2">
+                    <div className=" py-4 border-b border-divider_2">
+                        <TimeFilter times={times} isTime={isTime} label={"time"} handleTimeSelect={handleTimeSelect} />
+                    </div>
+                    {/* <div className="py-4 border-b border-divider_2">
                         <p className="text-subtitle1 font-semibold text-info_main pb-1">Time</p>
                         <div className=" grid grid-cols-4 border rounded">
                             {times.map((time) => (
@@ -125,7 +129,7 @@ const FilterTourLists = () => {
                                 </div>
                             ))}
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="py-4">
                         <FilterCheckboxGroup options={filterTags} selectedFilters={selectedTagsIds} onSelect={setSelectTagsIds} title="Tags" />

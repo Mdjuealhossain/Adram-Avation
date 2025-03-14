@@ -14,9 +14,10 @@ const Hotel = () => {
                     <div className=" flex flex-col lg:flex-row items-center gap-4">
                         <HotelSerice isSearchFor={false} />
                         <Button size="large" className={"bg-warning_main w-full lg:w-auto font-semibold text-info_main text-H4"}>
-                            Modify
-                            <br className=" hidden lg:inline" />
-                            Search
+                            <span className=" hidden lg:inline">
+                                Modify <br /> Search
+                            </span>
+                            <span className="  lg:hidden">Modify Search</span>
                         </Button>
                     </div>
                 </Container>

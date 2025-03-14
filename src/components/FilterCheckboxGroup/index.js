@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { BsCheckSquareFill } from "react-icons/bs";
 
-const FilterCheckboxGroup = ({ title, options, selectedFilters, onSelect }) => {
+const FilterCheckboxGroup = ({ title, options, selectedFilters, onSelect, labelClass, itemClass }) => {
     const [showAll, setShowAll] = useState(false);
     const visibleOptions = showAll ? options : options.slice(0, 4);
 
@@ -21,10 +21,10 @@ const FilterCheckboxGroup = ({ title, options, selectedFilters, onSelect }) => {
 
     return (
         <div className=" ">
-            <p className="text-subtitle1 font-semibold text-info_main pb-1 capitalize">{title}</p>
+            <p className={`text-subtitle1 font-semibold text-info_main pb-1 capitalize ${labelClass}`}>{title}</p>
             <div className="flex flex-col gap-[10px]">
                 {visibleOptions.map(({ id, label }) => (
-                    <label key={id} className="inline-flex items-center cursor-pointer">
+                    <label key={id} className={`inline-flex items-center cursor-pointer text-body1 text-gray_400 ${itemClass}`}>
                         <input
                             type="checkbox"
                             className="form-checkbox hidden h-5 w-5 rounded border-gray-300 focus:ring-blue-500"
@@ -32,7 +32,7 @@ const FilterCheckboxGroup = ({ title, options, selectedFilters, onSelect }) => {
                             onChange={() => handleFilterChange(id)} // Update on change
                         />
                         <div className="h-5 w-5">{selectedFilters.includes(id) ? <BsCheckSquareFill size={18} className="shadow-md text-info_main" /> : <div className="h-[18px] w-[18px] border border-black/50 rounded-[3px] shadow-md"></div>}</div>
-                        <span className="ml-1 text-body1 text-gray_400">{label}</span>
+                        <span className="ml-1 ">{label}</span>
                     </label>
                 ))}
             </div>

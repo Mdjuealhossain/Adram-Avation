@@ -4,7 +4,6 @@ import SelectWithSearch from "@/components/Select";
 import { LuArrowLeftRight } from "react-icons/lu";
 
 import TravelerSelect from "@/components/TravelerSelect";
-import { IoClose } from "react-icons/io5";
 import DatePicker from "../DatePicker";
 
 const FlightService = () => {
@@ -14,11 +13,7 @@ const FlightService = () => {
 
     const [selectedFrom, setSelectedFrom] = useState(airports[0]); // Default selection for "From"
     const [selectedTo, setSelectedTo] = useState(airports[1]); // Default selection for "To"
-    const [startDate, setStartDate] = useState(new Date(2025, 2, 8)); // State for the selected journey date
-    const [isOpen, setIsOpen] = useState(false);
-    const handleClick = () => {
-        setIsOpen(true); // Open date picker on button click
-    };
+
     const handleSwap = () => {
         setSelectedFrom(selectedTo);
         setSelectedTo(selectedFrom);
@@ -42,7 +37,7 @@ const FlightService = () => {
     ]);
 
     return (
-        <div>
+        <div className=" w-full">
             <div className="flex items-center gap-4 mb-1">
                 <label className={`flex items-center gap-1 text-subtitle1 font-semibold ${oneWay ? " opacity-100" : " opacity-50 cursor-pointer"}`}>
                     <input

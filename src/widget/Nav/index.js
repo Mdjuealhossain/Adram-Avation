@@ -80,7 +80,7 @@ const Nav = () => {
 
                         <div className={` md:px-[60px] px-10 rounded-lg z-10 hidden md:flex items-center transition-opacity duration-300 ${showContent && isHomePage ? "opacity-100" : !isHomePage ? "opacity-100" : "opacity-0"}`}>
                             {tabs.map((tab) => (
-                                <Tab className={`!py-7 ${!isHomePage && " !border-transparent !text-secondary"}`} key={tab.id} isActive={activeTabIndex === tab.id} onClick={() => handleTab(tab)} label={tab.label} icon={tab.icon} />
+                                <Tab className={` ${!isHomePage && "!border-transparent !text-info_main "} !flex-col !py-[17px] !gap-1`} key={tab.id} isActive={activeTabIndex === tab.id} onClick={() => handleTab(tab)} label={tab.label} icon={tab.icon} />
                             ))}
                         </div>
 

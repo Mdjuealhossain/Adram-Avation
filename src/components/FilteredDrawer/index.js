@@ -1,9 +1,10 @@
+"use client";
 import React from "react";
-const Drawer = dynamic(() => import("react-modern-drawer"), { ssr: false });
-import "react-modern-drawer/dist/index.css";
 import dynamic from "next/dynamic";
+const Drawer = dynamic(() => import("react-modern-drawer"), { ssr: false });
 import { IoClose } from "react-icons/io5";
-import FilterTourLists from "@/widget/FilterTourLists";
+
+import "react-modern-drawer/dist/index.css";
 
 const FilteredDrawer = ({ title, children, isOpen, close }) => {
     return (
