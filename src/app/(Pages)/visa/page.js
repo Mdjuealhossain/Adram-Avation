@@ -12,7 +12,7 @@ const Visa = () => {
                     <ImageURL image={"/assets/images/visa/visa_banner.avif"} height={450} width={1920} alt={"banner"} className="!h-full !w-full object-cover" />
                 </div>
             </section>
-            <section className=" mt-16">
+            <section className=" md:my-16 my-8">
                 <Container>
                     <VisaDetails />
                 </Container>

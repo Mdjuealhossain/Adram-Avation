@@ -41,6 +41,7 @@ export default {
                 tabs: "0 4px 10px rgba(0, 117, 255, .09)",
                 tour_list: "0 8px 12px rgba(51, 65, 80, .06), 0 0 12px rgba(51, 65, 80, .06)",
                 nav: "0 1px 3px rgba(51, 65, 80, .08)",
+                visa_form: "-2px -3px 9px 4px rgba(0, 0, 0, .03)",
             },
             fontSize: {
                 xxs: ".5rem", // 8px

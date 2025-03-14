@@ -1,7 +1,7 @@
 import React from "react";
 
 const VisaSummary = () => {
-    return <div>VisaSummary</div>;
+    return <div className="">VisaSummary</div>;
 };
 
 export default VisaSummary;
