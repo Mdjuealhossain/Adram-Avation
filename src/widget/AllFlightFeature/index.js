@@ -7,6 +7,7 @@ import CountdownTimer from "../CountdownTimer";
 import Button from "@/components/Button";
 import FlightLists from "../FlightLists";
 import useModal from "@/hooks/useModal";
+import SpeedTypes from "../SpeedTypes";
 
 const AllFlightFeature = () => {
     const { isOpen, openModal, closeModal } = useModal();
@@ -21,8 +22,12 @@ const AllFlightFeature = () => {
             <div className=" hidden lg:block">
                 <FilterFlightLists />
             </div>
-            <div className=" grid grid-cols-4 mt-4">
+            <div className=" md:grid grid-cols-4 mt-4 flex flex-col-reverse md:gap-6 gap-4">
                 <div className=" col-span-3">
+                    <div className=" mb-4">
+                        <SpeedTypes />
+                    </div>
+
                     <FlightLists />
                 </div>
                 <CountdownTimer />
